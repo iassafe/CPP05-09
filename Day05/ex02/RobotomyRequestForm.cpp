@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:46:18 by iassafe           #+#    #+#             */
-/*   Updated: 2024/01/27 15:54:14 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/14 16:16:28 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ RobotomyRequestForm::~RobotomyRequestForm(){
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const{
-    if (this->getsigned() == true && this->getexecuting_grade() >= executor.getgrade())
-    {
-        static bool last_exec_success = true;
+    if (this->getsigned() && this->getexecuting_grade() >= executor.getgrade()){
+        static bool last_exec_success = false;
         bool success = !last_exec_success;
         last_exec_success = success;
         if(success)

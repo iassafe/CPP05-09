@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 19:16:41 by iassafe           #+#    #+#             */
-/*   Updated: 2024/01/26 11:22:53 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/14 09:36:57 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ class Bureaucrat
 		void	grade_decrement(void);
 		void	signForm(Form &obj);
 		
-		class GradeTooHighException: public std::exception {
+		class GradeTooHighException: public std::exception{
 			public:
 				virtual const char* what() const throw();
 		};
 
-		class GradeTooLowException: public std::exception {
+		class GradeTooLowException: public std::exception{
 			public:
 				virtual const char* what() const throw();
 		};

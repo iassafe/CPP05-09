@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:20:40 by iassafe           #+#    #+#             */
-/*   Updated: 2024/01/28 20:52:56 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/14 15:47:49 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ int main(void)
 			Bureaucrat	bob2("Bob2", 1);
             std::cout << bob2;
 		}
-		catch (std::exception& e) {
+		catch (std::exception& e){
 			std::cerr << "Error : " << e.what() << std::endl;
 		}
 	std::cout << "-----------Form--------------" << std::endl;
 	try{
 		Bureaucrat	bob("bob", 44);
 		Form		form("form", false, 150, 150);
+		std::cout << form;
 		bob.signForm(form);
 	}
 	catch(std::exception &e){
@@ -41,8 +42,9 @@ int main(void)
 
 	std::cout << "-----------------------------" << std::endl;
 	try{
-		Bureaucrat	bob("bob", 3);
-		Form		form("form", true, 1, 10);
+		Bureaucrat	bob("bob", 13);
+		Form		form("form", true, 3, 3);
+		std::cout << form;
 		bob.signForm(form);
 	}
 	catch(std::exception &e){

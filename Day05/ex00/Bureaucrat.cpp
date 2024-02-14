@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 19:16:58 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/12 09:43:46 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/14 14:51:50 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Bureaucrat::Bureaucrat(Bureaucrat const &copy){
 Bureaucrat::~Bureaucrat(){
 }
 
-Bureaucrat &Bureaucrat::operator=(Bureaucrat const &copy){ 
+Bureaucrat &Bureaucrat::operator=(Bureaucrat const &copy){
     if (this != &copy){
         this->_grade=copy._grade;
     }
@@ -60,11 +60,11 @@ void Bureaucrat::grade_decrement(void){
 		throw Bureaucrat::GradeTooLowException();
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
+const char* Bureaucrat::GradeTooHighException::what() const throw(){
 	return ("The grade is too high");
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
+const char* Bureaucrat::GradeTooLowException::what() const throw(){
 	return ("The grade is too low");
 }
 

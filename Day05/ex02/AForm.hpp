@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 14:56:01 by iassafe           #+#    #+#             */
-/*   Updated: 2024/01/27 11:57:10 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/14 09:39:21 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ class AForm
         virtual void execute(Bureaucrat const & executor) const = 0;
 
 
-        class GradeTooHighException: public std::exception {
+        class GradeTooHighException: public std::exception{
 			public:
 				virtual const char* what() const throw();
 		};
 
-		class GradeTooLowException: public std::exception {
+		class GradeTooLowException: public std::exception{
 			public:
 				virtual const char* what() const throw();
 		};

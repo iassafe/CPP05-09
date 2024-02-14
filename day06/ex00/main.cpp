@@ -6,15 +6,11 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:45:10 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/09 18:06:31 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/14 14:51:17 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-
-const char *print_error(const char *str){
-    return(str);
-}
 
 int pseudo_literals(std::string str){
     if (str == "-inff" || str == "+inff" || str == "inff"
@@ -64,10 +60,10 @@ int main(int ac, char **av)
                 ScalarConverter::convert(str);
         }
         else
-            throw std::runtime_error(print_error("Error: invalid param"));
+            throw ("Error: invalid param");
     }
-	    catch(std::exception &e){
-	    	std::cout << e.what() << std::endl;
+	    catch(const char *s){
+	    	std::cout << s << std::endl;
 	}
 }
    

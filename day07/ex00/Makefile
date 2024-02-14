@@ -5,25 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/21 19:15:19 by iassafe           #+#    #+#              #
-#    Updated: 2024/02/12 11:20:15 by iassafe          ###   ########.fr        #
+#    Created: 2024/02/14 10:29:36 by iassafe           #+#    #+#              #
+#    Updated: 2024/02/14 10:31:41 by iassafe          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Form
-HEADR = AForm.hpp \
-		Bureaucrat.hpp \
-		RobotomyRequestForm.hpp \
-		ShrubberyCreationForm.hpp \
-		PresidentialPardonForm.hpp
+NAME = whatever
+HEADR = whatever.hpp
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp \
-		AForm.cpp \
-		Bureaucrat.cpp \
-		RobotomyRequestForm.cpp \
-		ShrubberyCreationForm.cpp \
-		PresidentialPardonForm.cpp
+SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 RM = rm -rf
 

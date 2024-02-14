@@ -6,11 +6,11 @@
 #    By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/21 19:15:19 by iassafe           #+#    #+#              #
-#    Updated: 2024/01/27 18:04:42 by iassafe          ###   ########.fr        #
+#    Updated: 2024/02/12 11:20:41 by iassafe          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Form
+NAME = Intern
 HEADR = AForm.hpp \
 		Bureaucrat.hpp \
 		RobotomyRequestForm.hpp \

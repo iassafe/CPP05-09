@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:46:15 by iassafe           #+#    #+#             */
-/*   Updated: 2024/01/27 15:06:57 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/14 16:15:59 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &cop
 PresidentialPardonForm::~PresidentialPardonForm(){
 }
 
-void PresidentialPardonForm::execute(Bureaucrat const & executor) const
-{
-	if (this->getsigned() == true && (executor.getgrade() <= this->getexecuting_grade()))
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const{
+	if (this->getsigned() && this->getexecuting_grade() >= executor.getgrade())
 		std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 	else
 		throw (AForm::GradeTooLowException());

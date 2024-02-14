@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:16:40 by iassafe           #+#    #+#             */
-/*   Updated: 2024/01/28 18:21:45 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/14 15:47:22 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Form::Form(): _name("default"), _signed(false), _signing_grade(1),
             _executing_grade(1){
-    if (this->_signing_grade < 1 || this->_executing_grade)
+    if (this->_signing_grade < 1 || this->_executing_grade < 1)
 		throw Form::GradeTooHighException();
 	if (this->_signing_grade > 150 || this->_executing_grade > 150)
 		throw Form::GradeTooLowException();
@@ -60,27 +60,25 @@ bool Form::getsigned(void)const{
     return(this->_signed);
 }
 
-const char* Form::GradeTooHighException::what() const throw() {
+const char* Form::GradeTooHighException::what() const throw(){
 	return ("The grade is too high");
 }
 
-const char* Form::GradeTooLowException::what() const throw() {
+const char* Form::GradeTooLowException::what() const throw(){
 	return ("The grade is too low");
 }
 
-void Form::beSigned(Bureaucrat &obj)
-{
-    if (this->_signing_grade < obj.getgrade())
+void Form::beSigned(Bureaucrat &obj){
+    if (obj.getgrade() > this->getexecuting_grade())
         throw Form::GradeTooLowException();
     this->_signed = true;
-    
 }
 
 std::ostream &operator<<(std::ostream &output, Form const &obj){
     output << obj.getname() << ", signing grade: "
     << obj.getsigning_grade() << ", executing grade: "
     << obj.getexecuting_grade();
-    if (!obj.getsigned())
+    if (obj.getsigned())
         output << ", is signed";
     else
         output << ", is not signed";

@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:46:26 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/12 10:03:06 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/14 16:13:20 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,10 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &copy)
 ShrubberyCreationForm::~ShrubberyCreationForm(){
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
-{
-
-	if (this->getsigned() == false && this->getexecuting_grade() >= executor.getgrade())
-		throw (AForm::GradeTooLowException());
-	else
-	{
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const{   
+    if (this->getsigned() && this->getexecuting_grade() >= executor.getgrade()){
 		std::ofstream	outputfile(this->_target);
-		if (!outputfile.is_open())
-		{
+		if (!outputfile.is_open()){
 			std::cerr << "Error: creating file!" << std::endl;
 			return ;
 		}
@@ -50,7 +44,9 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
                    << "   ||\n"
                    << "   ||\n";
         outputfile.close();
-	}
+    }
+	else
+		throw (AForm::GradeTooLowException());
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm const &copy){
