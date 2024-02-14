@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:20:40 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/14 16:47:29 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/14 19:39:55 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main(void){
 	std::cout << "-----------ShrubberyCreationForm--------------" << std::endl;
 	try{
 		Bureaucrat	bob("bob", 44);
-		ShrubberyCreationForm S1("ShrubberyCreationForm", true, 120, 130, "asmael3awjaaaa");
+		ShrubberyCreationForm S1("ShrubberyCreationForm", true, 120, 130, "");
 		bob.executeForm(S1);
 	}
 	catch(std::exception &e){
