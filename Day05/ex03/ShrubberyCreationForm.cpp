@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:46:26 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/15 11:16:46 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/15 13:09:36 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
 			return ;
 		}
         std::cout << this->_target << " is open" << std::endl;
-		outputfile << "   **\n"
-                   << "  ****\n"
-                   << " ******\n"
-                   << "********\n"
+		outputfile << "   *\n"
+                   << "  ***\n"
+                   << " *****\n"
+                   << "*******\n"
                    << "   ||\n"
                    << "   ||\n";
         outputfile.close();
