@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 19:16:58 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/15 11:12:32 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/15 12:56:23 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ try{
 	form.execute(*this);
 	std::cout<< this->getname() << " executed " << form.getname() << std::endl;
 }
-
-catch(std::exception	&e){
+catch(std::exception& e){
 	std::cout << this->getname() << " couldn't execute " << form.getname() << " because " << e.what()<< std::endl;
 }
 }
