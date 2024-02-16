@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:16:40 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/14 15:47:22 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 12:02:43 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 Form::Form(): _name("default"), _signed(false), _signing_grade(1),
             _executing_grade(1){
-    if (this->_signing_grade < 1 || this->_executing_grade < 1)
-		throw Form::GradeTooHighException();
-	if (this->_signing_grade > 150 || this->_executing_grade > 150)
-		throw Form::GradeTooLowException();
 }
 
-Form::Form(const std::string n, bool s, const int g_s, const int g_e)
-:_name(n), _signed(s), _signing_grade(g_s), _executing_grade(g_e){
+Form::Form(const std::string n, const int g_s, const int g_e)
+:_name(n), _signing_grade(g_s), _executing_grade(g_e){
+    this->_signed = false;
     if (this->_signing_grade < 1 || this->_executing_grade < 1)
 		throw Form::GradeTooHighException();
 	if (this->_signing_grade > 150 || this->_executing_grade > 150)
@@ -44,7 +41,7 @@ Form &Form::operator=(Form const &copy){
     return(*this);
 }
 
-std::string Form::getname(void)const{
+std::string Form::getName(void)const{
     return(this->_name);
 }
 
@@ -69,13 +66,13 @@ const char* Form::GradeTooLowException::what() const throw(){
 }
 
 void Form::beSigned(Bureaucrat &obj){
-    if (obj.getgrade() > this->getexecuting_grade())
+    if (obj.getGrade() > this->getsigning_grade())
         throw Form::GradeTooLowException();
     this->_signed = true;
 }
 
 std::ostream &operator<<(std::ostream &output, Form const &obj){
-    output << obj.getname() << ", signing grade: "
+    output << obj.getName() << ", signing grade: "
     << obj.getsigning_grade() << ", executing grade: "
     << obj.getexecuting_grade();
     if (obj.getsigned())

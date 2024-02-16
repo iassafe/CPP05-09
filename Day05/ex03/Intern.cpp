@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 18:05:11 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/14 09:42:35 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 12:33:26 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ Intern::~Intern(){
 
 AForm   *Intern::makeForm(std::string name, std::string target){
     std::string Names[] = {"Robotomy" ,"President", "Shrubbery"};
-    AForm   *ptr[] = {new RobotomyRequestForm("Robotomy", true, 150, 150, target),
-    new PresidentialPardonForm("President", true, 150, 150, target),
-    new ShrubberyCreationForm("Shrubbery", true, 150, 150, target)};
+    AForm   *ptr[] = {new RobotomyRequestForm("Robotomy", 72, 45, target),
+    new PresidentialPardonForm("President", 25, 5, target),
+    new ShrubberyCreationForm("Shrubbery", 145, 137, target)};
     int flag = 0;
     for (int i = 0; i < 3; i ++){
         if (name == Names[i]){

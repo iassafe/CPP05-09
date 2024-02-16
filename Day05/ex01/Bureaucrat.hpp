@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 19:16:41 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/15 18:14:47 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 10:31:31 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ class Bureaucrat
 		Bureaucrat &operator=(Bureaucrat const &copy);
 		~Bureaucrat();
 
-        const std::string getname(void)const;
-        int     getgrade(void)const;
+        const std::string getName(void)const;
+        int     getGrade(void)const;
 
 		void	grade_increment(void);
 		void	grade_decrement(void);

@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:20:40 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/14 19:39:55 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 12:34:45 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int main(void){
 	std::cout << "-----------PresidentialPardonForm--------------" << std::endl;
 	try{
 		Bureaucrat	bob("bob", 44);
-		PresidentialPardonForm P("PresidentialPardonForm", true, 150, 150, "President");
+		PresidentialPardonForm P;
+		P.beSigned(bob);
 		bob.executeForm(P);
 	}
 	catch(std::exception &e){
@@ -28,7 +29,8 @@ int main(void){
 	std::cout << "-----------RobotomyRequestForm--------------" << std::endl;
 	try{
 		Bureaucrat	bob("bob", 1);
-		RobotomyRequestForm R("RobotomyRequestForm", true, 10, 10, "Robotomy");
+		RobotomyRequestForm R;
+		R.beSigned(bob);
 		bob.executeForm(R);
 	}
 	catch(std::exception &e){
@@ -37,9 +39,10 @@ int main(void){
 
 	std::cout << "-----------ShrubberyCreationForm--------------" << std::endl;
 	try{
-		Bureaucrat	bob("bob", 44);
-		ShrubberyCreationForm S1("ShrubberyCreationForm", true, 120, 130, "");
-		bob.executeForm(S1);
+		Bureaucrat	bob("bob", 150);
+		ShrubberyCreationForm S;
+		S.beSigned(bob);
+		bob.executeForm(S);
 	}
 	catch(std::exception &e){
 		std::cout << "Error : " << e.what() << std::endl;
@@ -53,16 +56,16 @@ int main(void){
 		AForm *P;
 		AForm *N;
 		Bureaucrat b;
-		S = i.makeForm("Shrubbery", "a");
+		S = i.makeForm("Shrubbery", "s");
 		std::cout << *S;
 		std::cout << "---------------" << std::endl;
-		R = i.makeForm("Robotomy", "a");
+		R = i.makeForm("Robotomy", "r");
 		std::cout << *R;
 		std::cout << "---------------" << std::endl;
-		P = i.makeForm("President", "a");
+		P = i.makeForm("President", "p");
 		std::cout << *P;
 		std::cout << "---------------" << std::endl;
-		N = i.makeForm("Naaame", "a");
+		N = i.makeForm("Naaame", "n");
 		delete S;
 		delete R;
 		delete P;

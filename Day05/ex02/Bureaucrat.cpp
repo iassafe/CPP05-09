@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 19:16:58 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/15 12:56:23 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 12:39:22 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(
 		throw Bureaucrat::GradeTooLowException();
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const &copy){
+Bureaucrat::Bureaucrat(Bureaucrat const &copy) : _name(copy._name){
 	*this=copy;
 }
 
@@ -36,11 +36,11 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &copy){
     return(*this);
 }
 
-const std::string Bureaucrat::getname(void)const{
+const std::string Bureaucrat::getName(void)const{
 	return this->_name;
 }
 
-int Bureaucrat::getgrade(void)const{
+int Bureaucrat::getGrade(void)const{
 	return this->_grade;
 }
 
@@ -68,27 +68,27 @@ void Bureaucrat::signForm(AForm &obj){
 	try
 	{
 		obj.beSigned(*this);
-		std::cout << this->getname() << " signed "
-				<< obj.getname() << std::endl;
+		std::cout << this->getName() << " signed "
+				<< obj.getName() << std::endl;
 	}
-	catch (std::exception& e) {
-		std::cerr << this->getname() << " couldn’t sign "
-			<< obj.getname() << " because " << e.what() << std::endl;
+	catch (std::exception& e){
+		std::cerr << this->getName() << " couldn’t sign "
+			<< obj.getName() << " because " << e.what() << std::endl;
 	}
 }
 
 void	Bureaucrat::executeForm(const AForm &form){
 try{
 	form.execute(*this);
-	std::cout<< this->getname() << " executed " << form.getname() << std::endl;
+	std::cout<< this->getName() << " executed " << form.getName() << std::endl;
 }
 catch(std::exception& e){
-	std::cout << this->getname() << " couldn't execute " << form.getname() << " because " << e.what()<< std::endl;
+	std::cout << this->getName() << " couldn't execute " << form.getName() << " because " << e.what()<< std::endl;
 }
 }
 
 std::ostream &operator<<(std::ostream &output, Bureaucrat const &obj){
-	output<< obj.getname() << ", bureaucrat grade "
-			<< obj.getgrade() << std::endl;
+	output<< obj.getName() << ", bureaucrat grade "
+			<< obj.getGrade() << std::endl;
     return output;
 }

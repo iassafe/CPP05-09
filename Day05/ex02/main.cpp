@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:20:40 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/15 13:06:38 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 12:22:06 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ int main(void)
 		}
 	std::cout << "-----------PresidentialPardonForm--------------" << std::endl;
 	try{
-		Bureaucrat	bob("bob", 44);
-		PresidentialPardonForm P("PresidentialPardonForm", true, 150, 150, "President");
+		Bureaucrat	bob("bob", 4);
+		PresidentialPardonForm P;
+		P.beSigned(bob);
 		bob.executeForm(P);
-		PresidentialPardonForm P1("PresidentialPardonForm", false, 150, 150, "President1");
+		PresidentialPardonForm P1("PresidentialPardonForm", 150, 150, "President1");
+		P1.beSigned(bob);
 		P1.execute(bob);
 	}
 	catch(std::exception &e){
@@ -46,13 +48,11 @@ int main(void)
 	std::cout << "-----------RobotomyRequestForm--------------" << std::endl;
 	try{
 		Bureaucrat	bob("bob", 1);
-		RobotomyRequestForm R("RobotomyRequestForm", true, 10, 10, "Robotomy");
-		bob.executeForm(R);
-		RobotomyRequestForm R1("RobotomyRequestForm", true, 10, 10, "Robotomy1");
-		bob.executeForm(R1);
-		RobotomyRequestForm R2("RobotomyRequestForm", true, 10, 10, "Robotomy2");
-		R2.execute(bob);
-		RobotomyRequestForm R3("RobotomyRequestForm", false, 10, 10, "Robotomy3");
+		RobotomyRequestForm R2;
+		R2.beSigned(bob);
+		bob.executeForm(R2);
+		RobotomyRequestForm R3("RobotomyRequestForm", 10, 10, "Robotomy3");
+		R3.beSigned(bob);
 		R3.execute(bob);
 	}
 	catch(std::exception &e){
@@ -62,14 +62,14 @@ int main(void)
 	std::cout << "-----------ShrubberyCreationForm--------------" << std::endl;
 	try{
 		Bureaucrat	bob("bob", 44);
-		ShrubberyCreationForm S("ShrubberyCreationForm", true, 150, 150, "Shrubbery");
+		ShrubberyCreationForm S;
+		S.beSigned(bob);
 		bob.executeForm(S);
-		ShrubberyCreationForm S1("ShrubberyCreationForm", true, 2, 2, "file");
+		ShrubberyCreationForm S1("ShrubberyCreationForm", 2, 2, "file");
 		S1.execute(bob);
 	}
 	catch(std::exception &e){
 		std::cout << "Error : " << e.what() << std::endl;
 	}
-
 	return 0;
 }

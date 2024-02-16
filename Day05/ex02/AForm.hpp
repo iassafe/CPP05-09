@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 14:56:01 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/15 18:15:29 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 11:13:41 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ class AForm
 
     public:
         AForm();
-        AForm(const std::string n, bool s, const int g_s, const int g_e);
+        AForm(const std::string n, const int g_s, const int g_e);
         AForm(AForm const &copy);
 		virtual~AForm();
 
         AForm &operator=(AForm const &copy);
 
-        std::string getname(void)const;
+        std::string getName(void)const;
         int getsigning_grade(void)const;
         int getexecuting_grade(void)const;
         bool getsigned(void)const;

@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 14:56:01 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/14 09:39:05 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 11:08:59 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ class Form
 
     public:
         Form();
-        Form(const std::string n, bool s, const int g_s, const int g_e);
+        Form(const std::string n, const int g_s, const int g_e);
         Form(Form const &copy);
 		~Form();
 
         Form &operator=(Form const &copy);
 
-        std::string getname(void)const;
+        std::string getName(void)const;
         int getsigning_grade(void)const;
         int getexecuting_grade(void)const;
         bool getsigned(void)const;
@@ -42,12 +42,12 @@ class Form
 
         class GradeTooHighException: public std::exception{
 			public:
-				virtual const char* what() const throw();
+				const char* what() const throw();
 		};
 
 		class GradeTooLowException: public std::exception{
 			public:
-				virtual const char* what() const throw();
+				const char* what() const throw();
 		};
 };
 std::ostream &operator<<(std::ostream &output, Form const &obj);

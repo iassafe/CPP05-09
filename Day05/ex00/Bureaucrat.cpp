@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 19:16:58 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/15 11:12:05 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 11:08:25 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(
 		throw Bureaucrat::GradeTooLowException();
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const &copy){
+Bureaucrat::Bureaucrat(Bureaucrat const &copy) : _name(copy._name){
 	*this=copy;
 }
 
@@ -36,11 +36,11 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &copy){
     return(*this);
 }
 
-const std::string Bureaucrat::getname(void)const{
+const std::string Bureaucrat::getName(void)const{
 	return this->_name;
 }
 
-int Bureaucrat::getgrade(void)const{
+int Bureaucrat::getGrade(void)const{
 	return this->_grade;
 }
 
@@ -65,5 +65,5 @@ const char* Bureaucrat::GradeTooLowException::what() const throw(){
 }
 
 std::ostream &operator<<(std::ostream &output, Bureaucrat const &obj){
-    return (output<< obj.getname() << ", bureaucrat grade " << obj.getgrade() << std::endl);
+    return (output<< obj.getName() << ", bureaucrat grade " << obj.getGrade() << std::endl);
 }

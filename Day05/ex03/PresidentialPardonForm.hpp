@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:46:11 by iassafe           #+#    #+#             */
-/*   Updated: 2024/01/29 13:53:29 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 11:52:22 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class PresidentialPardonForm : public AForm{
 		std::string	_target;
     public:
         PresidentialPardonForm();
-        PresidentialPardonForm(const std::string n, bool s,
+        PresidentialPardonForm(const std::string n,
             const int g_s, const int g_e, std::string tar);
         PresidentialPardonForm(PresidentialPardonForm const &copy);
 		~PresidentialPardonForm();

@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:20:40 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/14 15:17:41 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 12:42:48 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int main(void)
 
 		try
 		{
-			Bureaucrat	Bob("Bob", 150);
+			Bureaucrat	Bob("Bob", 2);
 			std::cout << Bob;
 			Bob.grade_increment();
 			std::cout << Bob;
@@ -76,7 +76,7 @@ int main(void)
 	
 		try
 		{
-			Bureaucrat	Bob("Bob", 2);
+			Bureaucrat	Bob("Bob", 150);
 			std::cout << Bob;
 			Bob.grade_decrement();
 			std::cout << Bob;
