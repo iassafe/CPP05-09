@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:46:15 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/16 16:21:03 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 18:50:45 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ PresidentialPardonForm::PresidentialPardonForm()
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string tar)
-: AForm("PresidentialPardonForm", 25, 5), _target("default"){
-    this->_target = tar;
+: AForm("PresidentialPardonForm", 25, 5), _target(tar){
 }
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &copy)

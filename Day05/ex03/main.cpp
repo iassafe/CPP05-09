@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:20:40 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/16 16:22:49 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 18:56:53 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,10 @@ int main(void){
 		AForm *N;
 		Bureaucrat b;
 		S = i.makeForm("Shrubbery", "s");
-		std::cout << *S;
 		std::cout << "---------------" << std::endl;
 		R = i.makeForm("Robotomy", "r");
-		std::cout << *R;
 		std::cout << "---------------" << std::endl;
 		P = i.makeForm("President", "p");
-		std::cout << *P;
 		std::cout << "---------------" << std::endl;
 		N = i.makeForm("Naaame", "n");
 		delete S;

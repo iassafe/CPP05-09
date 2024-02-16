@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 18:05:11 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/16 16:16:40 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 18:52:27 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ Intern &Intern::operator=(Intern const &copy){
 AForm   *Intern::makeForm(std::string name, std::string target){
     std::string Names[] = {"Robotomy" ,"President", "Shrubbery"};
     AForm   *ptr[] = {new RobotomyRequestForm(target),
-    new PresidentialPardonForm(target),
-    new ShrubberyCreationForm(target)};
+                    new PresidentialPardonForm(target),
+                    new ShrubberyCreationForm(target)};
     int flag = 0;
     for (int i = 0; i < 3; i++){
         if (name == Names[i]){

@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:46:18 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/16 11:54:26 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 18:47:31 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ RobotomyRequestForm::RobotomyRequestForm()
 : AForm("RobotomyRequestForm", 72, 45), _target("default"){
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string n,
-    const int g_s, const int g_e, std::string tar)
-    : AForm(n, g_s, g_e), _target(tar){
+RobotomyRequestForm::RobotomyRequestForm(std::string tar)
+    : AForm("RobotomyRequestForm", 72, 45), _target(tar){
 }
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &copy)

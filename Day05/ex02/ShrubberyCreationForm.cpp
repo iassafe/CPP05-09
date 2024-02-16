@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:46:26 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/16 12:09:40 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 18:48:41 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 : AForm("ShrubberyCreationForm", 145, 137), _target("default"){
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string n,
-    const int g_s, const int g_e, std::string tar)
-    : AForm(n, g_s, g_e), _target(tar){
+ShrubberyCreationForm::ShrubberyCreationForm(std::string tar)
+    : AForm("ShrubberyCreationForm", 145, 137), _target(tar){
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &copy)

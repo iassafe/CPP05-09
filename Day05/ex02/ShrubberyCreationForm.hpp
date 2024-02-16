@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:46:29 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/16 11:29:30 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 18:48:55 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ class ShrubberyCreationForm : public AForm{
         std::string _target;
     public:
         ShrubberyCreationForm();
-        ShrubberyCreationForm(const std::string n, const int g_s,
-            const int g_e, std::string tar);
+        ShrubberyCreationForm(std::string tar);
         ShrubberyCreationForm(ShrubberyCreationForm const &copy);
 		~ShrubberyCreationForm();
 
