@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 18:05:14 by iassafe           #+#    #+#             */
-/*   Updated: 2024/01/27 21:21:34 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:40:23 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ class Intern
 {
     public:
         Intern();
-        ~Intern();
+        Intern(Intern const &copy);
+		~Intern();
+        Intern &operator=(Intern const &copy);
 
         AForm  *makeForm(std::string name, std::string target);
 };

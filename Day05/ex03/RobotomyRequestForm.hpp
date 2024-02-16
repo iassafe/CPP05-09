@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 16:46:21 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/16 11:52:56 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:05:19 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ class RobotomyRequestForm : public AForm{
         std::string _target;
     public:
         RobotomyRequestForm();
-        RobotomyRequestForm(const std::string n,
-            const int g_s, const int g_e, std::string tar);
+        RobotomyRequestForm(std::string tar);
         RobotomyRequestForm(RobotomyRequestForm const &copy);
 		~RobotomyRequestForm();
 
