@@ -6,12 +6,12 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 09:50:28 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/10 10:04:22 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/18 10:37:03 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef C_HPP
 #define C_HPP
 #include"Base.hpp"
-class C : public Base {};
+class C : public Base{};
 #endif
