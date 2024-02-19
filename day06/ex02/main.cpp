@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 09:50:23 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/18 16:53:32 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/19 14:51:31 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 Base* generate(){
     Base* instances[3] = {new A(), new B(), new C()};
-    std::srand(std::time(0)); 
+    std::srand(std::time(0));
     int nb = std::rand() % 3;
     for(int i = 0; i < 3; i++){
         if (i != nb)
@@ -40,7 +40,7 @@ void identify(Base* p){
         std::cout << "Unknown type" << std::endl;
 }
 
-void identify(Base& p) {
+void identify(Base& p){
     try{
         (void)dynamic_cast<A&>(p);
         std::cout << "Type: A" << std::endl;
