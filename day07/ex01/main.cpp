@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:01:37 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/19 17:38:10 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/20 14:13:10 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(){
     std::cout << std::endl;
 
     std::cout << "-------------" << std::endl;
-    std::string stringArray[] = {"apple", "banana", "cherry"};
+    std::string stringArray[] = {"one", "two", "three"};
     std::cout << "String array: ";
     ::iter<std::string>(stringArray, 3, _print<std::string>);
     std::cout << std::endl;
