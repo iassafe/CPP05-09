@@ -6,15 +6,11 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:44:01 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/20 16:42:34 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/22 19:13:51 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"Array.hpp"
-
-const char* Out_Of_Range::what() const throw(){
-    return ("Index out of bounds");
-}
 
 int main(){
     try{
@@ -22,9 +18,7 @@ int main(){
         for(unsigned int i = 0; i < intArray.size(); i++){
             intArray[i] = i + 1;
         }
-    
         Array<int> intArrayCopy(intArray);
-        
         intArray[2] = 100;
     
         std::cout << "Original int_Array: ";
@@ -38,7 +32,13 @@ int main(){
             std::cout << intArrayCopy[i] << " ";
         }
         std::cout << std::endl;
-        
+    }
+    catch(const std::exception& e){
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+
+    try{
         Array<std::string> stringArray(2);
         for(unsigned int i = 0; i < stringArray.size(); i++){
             stringArray[i] = "one";
@@ -54,15 +54,14 @@ int main(){
         }
         std::cout << std::endl;
 
-        stringArrayCopy[0] = "two";
         std::cout << "Copied string_Array: ";
         for(unsigned int i = 0; i < stringArrayCopy.size(); i++){
             std::cout << stringArrayCopy[i] << " ";
         }
         std::cout << std::endl;
     }
-    catch(std::exception& e){
-        std::cout << "Error: " << e.what() << std::endl;
+    catch(const std::exception& e){
+        std::cerr << "Error: " << e.what() << std::endl;
     }
     return 0;
 }
