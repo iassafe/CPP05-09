@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:43:58 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/23 11:05:42 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/23 13:05:58 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ class Array{
         }
     
         T& operator[](unsigned int index){
+            if(index >= _size){
+                throw std::out_of_range("Index out of bounds");
+            }
+            return _data[index];
+        }
+
+        const T& operator[](unsigned int index) const{
             if(index >= _size){
                 throw std::out_of_range("Index out of bounds");
             }
