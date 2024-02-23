@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:12:13 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/23 12:48:20 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/23 12:54:27 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ const char* notfound::what() const throw(){
 	return ("Value not found in container");
 }
 
-int main() {
+int main(){
     try{
         std::vector<int> vec;
         vec.push_back(1);
@@ -31,7 +31,7 @@ int main() {
         std::vector<int>::iterator result2 = easyfind(vec, 7);
         std::cout << "Value found at position: " << std::distance(vec.begin(), result2) << std::endl;
     }
-    catch (const std::exception& e){
+    catch(const std::exception& e){
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
