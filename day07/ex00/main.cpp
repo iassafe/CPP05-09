@@ -6,15 +6,15 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:29:33 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/19 16:58:22 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/23 11:03:54 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "whatever.hpp"
 
 int main( void ) {
-    int a = 0;
-    int b = 0;
+    int a = 2;
+    int b = 1;
     ::swap( a, b );
     std::cout << "a = " << a << ", b = " << b << std::endl;
     std::cout << "min(a, b) = " << ::min( a, b ) << std::endl;

@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:44:01 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/22 19:13:51 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/23 11:06:58 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,11 @@ int main(){
 
 
     try{
-        Array<std::string> stringArray(2);
-        for(unsigned int i = 0; i < stringArray.size(); i++){
-            stringArray[i] = "one";
-        }
-    
-        Array<std::string> stringArrayCopy(stringArray);
-        
+        Array<std::string> stringArray(3);
+        stringArray[0] = "one";
         stringArray[1] = "two";
+        stringArray[2] = "three";
+        Array<std::string> stringArrayCopy(stringArray);
     
         std::cout << "Original string_Array: ";
         for(unsigned int i = 0; i < stringArray.size(); i++){

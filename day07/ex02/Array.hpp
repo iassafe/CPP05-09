@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:43:58 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/22 19:06:06 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/23 11:05:42 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Array{
         unsigned int _size;
     
     public:
-        Array() : _data(0), _size(0){}
+        Array() : _data(NULL), _size(0){}
         
         Array(unsigned int n) : _size(n){
             _data = new T[_size];
