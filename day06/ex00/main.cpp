@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:45:10 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/18 09:47:48 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/19 15:35:22 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ int main(int ac, char **av)
             std::string str = av[1];
             if (_valid(str))
                 ScalarConverter::convert(str);
+            else
+                throw ("Invalid parameter!");
         }
         else
-            throw ("invalid param");
+            throw ("Invalid number of parameters!");
     }
 	catch(const char *s){
 	    std::cout << "Error: " << s << std::endl;
