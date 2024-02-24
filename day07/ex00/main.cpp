@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 10:29:33 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/23 11:03:54 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/24 11:10:41 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main( void ) {
     int a = 2;
-    int b = 1;
+    int b = 3;
     ::swap( a, b );
     std::cout << "a = " << a << ", b = " << b << std::endl;
     std::cout << "min(a, b) = " << ::min( a, b ) << std::endl;

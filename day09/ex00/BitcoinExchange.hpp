@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 16:31:42 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/24 11:14:18 by iassafe          ###   ########.fr       */
+/*   Created: 2024/02/23 20:01:16 by iassafe           #+#    #+#             */
+/*   Updated: 2024/02/23 20:13:49 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-#define WHATEVER_HPP
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 #include<iostream>
+#include <fstream>
 
-template <typename T>
-void swap(T& a, T& b){
-    T tmp;
-    tmp = a;
-    a = b;
-    b = tmp;
-}   
 
-template <typename T>
-T min(const T& a, const T& b){
-    return (a <= b) ? a : b;
-}
 
-template <typename T>
-T max(const T& a, const T& b){
-    return (a >= b) ? a : b;
-}
 #endif

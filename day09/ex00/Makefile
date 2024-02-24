@@ -5,16 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/23 17:50:40 by iassafe           #+#    #+#              #
-#    Updated: 2024/02/23 19:49:10 by iassafe          ###   ########.fr        #
+#    Created: 2024/02/23 19:59:38 by iassafe           #+#    #+#              #
+#    Updated: 2024/02/23 20:00:05 by iassafe          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = MutantStack
-HEADR = MutantStack.hpp
+NAME = btc
+HEADR = BitcoinExchange.hpp
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp
+SRC = main.cpp BitcoinExchange.cpp
 OBJ = $(SRC:.cpp=.o)
 RM = rm -rf
 

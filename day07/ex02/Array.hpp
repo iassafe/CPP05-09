@@ -6,13 +6,12 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:43:58 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/23 13:05:58 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/23 13:09:34 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
-#include <iostream>
 #include <iostream>
 #include <exception>
 
@@ -70,7 +69,7 @@ class Array{
             }
             return _data[index];
         }
-
+        
         unsigned int size() const{
             return _size;
         }
