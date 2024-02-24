@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:31:42 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/24 11:14:18 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/24 12:07:31 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ void swap(T& a, T& b){
 
 template <typename T>
 T min(const T& a, const T& b){
-    return (a <= b) ? a : b;
+    if (b <= a)
+        return b;
+    return a;
 }
 
 template <typename T>
 T max(const T& a, const T& b){
-    return (a >= b) ? a : b;
+    if(b >= a)
+        return b;
+    return a;
 }
 #endif
