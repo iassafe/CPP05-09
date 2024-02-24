@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:01:34 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/23 10:07:29 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/24 12:08:51 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void iter(T* array, size_t length, F func){
 
 template<typename T>
 void _print(const T& element){
-    std::cout << element << ", ";
+    std::cout << element << " ";
 }
 #endif

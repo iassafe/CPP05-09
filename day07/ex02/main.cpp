@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:44:01 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/24 11:17:57 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/24 12:10:32 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int main(){
         std::cerr << "Error: " << e.what() << std::endl;
     }
 
-
     try{
         Array<std::string> stringArray(3);
         stringArray[0] = "one";
@@ -56,6 +55,7 @@ int main(){
             std::cout << stringArrayCopy[i] << " ";
         }
         std::cout << std::endl;
+        stringArrayCopy[3] = "one";
     }
     catch(const std::exception& e){
         std::cerr << "Error: " << e.what() << std::endl;
