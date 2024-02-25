@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:12:13 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/24 18:59:02 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/25 18:35:30 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,30 @@ int main(){
         vec.push_back(2);
         vec.push_back(30);
         vec.push_back(4);
+        vec.push_back(53);
+        vec.push_back(90);
         vec.push_back(3);
 
         std::vector<int>::iterator result1 = easyfind(vec, 3);
-        std::cout << "Value found at position: " << result1 - vec.begin()<< std::endl;
+        std::cout << "Value found at position: " << std::distance(vec.begin(), result1)<< std::endl;
 
         std::vector<int>::iterator result2 = easyfind(vec, 7);
-        std::cout << "Value found at position: " << result2 - vec.begin() << std::endl;
+        std::cout << "Value found at position: " << std::distance(vec.begin(), result2) << std::endl;
+    }
+    catch(const std::exception& e){
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    try{
+        std::list<int> lst;
+        lst.push_back(3);
+        lst.push_back(2);
+        lst.push_back(30);
+        lst.push_back(4);
+        lst.push_back(5);
+
+        std::list<int>::iterator result1 = easyfind(lst, 3);
+        std::cout << "Value found at position1: " <<std::distance(lst.begin(), result1) << std::endl;
     }
     catch(const std::exception& e){
         std::cerr << "Error: " << e.what() << std::endl;

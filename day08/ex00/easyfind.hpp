@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:12:10 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/23 12:46:31 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/25 18:34:06 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define EASYFIND_HPP
 #include<iostream>
 #include<vector>
+#include<list>
+#include<map>
 
 class notfound : public std::exception{
     public:

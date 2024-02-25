@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:18:23 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/23 17:36:21 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/25 18:41:50 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Span{
     private:
         std::vector<int> _numbers;
-        unsigned int _size;
+        unsigned int N;
     public:
         Span();
         Span(unsigned int size);

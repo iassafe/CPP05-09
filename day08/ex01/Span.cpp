@@ -6,18 +6,18 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:18:20 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/23 17:43:52 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/25 18:43:10 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"Span.hpp"
 
 
-Span::Span() : _numbers(0), _size(0){
+Span::Span() : _numbers(0), N(0){
 }
 
 Span::Span(unsigned int size): _numbers(0){
-    this->_size = size;
+    this->N = size;
 }
 
 Span::Span(Span const &copy){
@@ -30,19 +30,19 @@ Span::~Span(){
 Span &Span::operator=(Span const &copy){
     if (this != &copy){
         this->_numbers = copy._numbers;
-        this->_size = copy._size;
+        this->N = copy.N;
     }
     return(*this);
 }
 
 void Span::addNumber(int nb){
-    if (this->_numbers.size() >= this->_size)
+    if (this->_numbers.size() >= this->N)
         throw Span::out_of_range();
     this->_numbers.push_back(nb);
 }
 
 int Span::longestSpan(){
-    if (this->_numbers.size() <= 1 || this->_size <= 1)
+    if (this->_numbers.size() <= 1 || this->N <= 1)
         throw out_of_range();
     int max = this->_numbers[0];
     int min = this->_numbers[0];
@@ -56,7 +56,7 @@ int Span::longestSpan(){
 }
 
 int Span::shortestSpan(){
-    if (this->_numbers.size() <= 1 || this->_size <= 1)
+    if (this->_numbers.size() <= 1 || this->N <= 1)
         throw out_of_range();
     int min;
     min = std::abs(this->_numbers[0] - this->_numbers[1]);

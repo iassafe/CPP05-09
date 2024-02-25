@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:51:30 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/24 21:16:04 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/25 19:00:59 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ class	MutantStack : public std::stack<T, contr>{
 			return (this->c.begin());
 		}
 		iterator	end(){
+			return (this->c.end());
+		}
+		typedef typename std::stack<T, contr>::container_type::const_iterator const_iterator;
+		const iterator	begin() const{
+			return (this->c.begin());
+		}
+		const iterator	end() const{
 			return (this->c.end());
 		}
 };
