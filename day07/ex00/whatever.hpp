@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:31:42 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/24 12:07:31 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/25 09:40:06 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ T max(const T& a, const T& b){
         return b;
     return a;
 }
+
 #endif
