@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:43:58 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/25 09:48:18 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/25 11:04:34 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,29 @@ class Array{
         unsigned int _size;
     
     public:
-        Array() : _elements(NULL), _size(0){}
+        Array() : _elements(NULL), _size(0){
+        }
         
         Array(unsigned int n) : _size(n){
-            _elements = new T[_size];
-            for(unsigned int i = 0; i < _size; i++){
-                _elements[i] = T();
+            if(_size > 0){
+                _elements = new T[_size];
+                for(unsigned int i = 0; i < _size; i++){
+                    _elements[i] = T();
+                }
             }
+            else
+                _elements = NULL;
         }
     
         Array(const Array& other) : _size(other._size){
-            _elements = new T[_size];
-            for(unsigned int i = 0; i < _size; i++){
-                _elements[i] = other._elements[i];
+            if(_size > 0){
+                _elements = new T[_size];
+                for(unsigned int i = 0; i < _size; i++){
+                    _elements[i] = other._elements[i];
+                }
             }
+            else
+                _elements = NULL;
         }
     
         Array& operator=(const Array& other){
@@ -42,10 +51,14 @@ class Array{
                 if (_elements)
                     delete[] _elements;
                 _size = other._size;
-                _elements = new T[_size];
-                for(unsigned int i = 0; i < _size; i++){
-                    _elements[i] = other._elements[i];
+                if (_size > 0){
+                    _elements = new T[_size];
+                    for(unsigned int i = 0; i < _size; i++){
+                        _elements[i] = other._elements[i];
+                    }
                 }
+                else
+                    _elements = NULL;
             }
             return *this;
         }
