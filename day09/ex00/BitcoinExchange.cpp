@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 15:51:49 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/27 16:04:38 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void check_date(std::string line){
             std::cerr << "Error: bad input => " << date << std::endl;
     else if (is_leap_year(year) && month == 2 && day > 29)
             std::cerr << "Error: bad input => " << date << std::endl;
-    std::cout << year << std::endl;
 }
 
 void parce_file(std::string file){
