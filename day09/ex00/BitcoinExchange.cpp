@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 14:13:33 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/27 14:52:15 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 void parce_value(std::string value){
     int point = 0;
     for(size_t k=0; k < value.length(); k++){
-            if(value[0] != ' ' || (value[k] != '-' && value[k] != '+' && value[k] != ' ' && value[k] != '.' && !isdigit(value[k])))
+            if(value[0] != ' ' || (value[k] != '-' && \
+            value[k] != '+' && value[k] != ' ' \
+            && value[k] != '.' && !isdigit(value[k])))
                 throw("value");
             else if (value[0] == ' ' && value[1] == '\0')
                 throw("value");
-            else if ((k != 0 && value[k] == ' ') || (k != 1 && (value[k] == '+' || value[k] == '-')))
+            else if ((k != 0 && value[k] == ' ') || (k != 1 && \
+            (value[k] == '+' || value[k] == '-')))
                 throw("value");
-            else if (((value[k] == '+' || value[k] == '-') && !isdigit(value[k + 1])) || point > 1)
+            else if (((value[k] == '+' || value[k] == '-') && \
+            !isdigit(value[k + 1])) || point > 1)
                 throw("value");
             else if (value[k] == '.')
                 point++;
@@ -64,7 +68,7 @@ int is_leap_year(int year){
     return 0;
 }
 
-void check_leap_year(std::string line){
+void check_date(std::string line){
     size_t date_pos = line.find('|');
     if (date_pos == std::string::npos)
         date_pos = line.length();
@@ -81,16 +85,16 @@ void check_leap_year(std::string line){
     double month = strtod(month_str.c_str(), &endptr);
     double day = strtod(day_str.c_str(), &endptr);
     if (month < 1 || month > 12)
-        throw("invalid month");
-    if (day < 1 || day > 31)
-        throw("invalid day");
-    if (!is_leap_year(year)){
+        std::cerr << "Error: bad input => " << date << std::endl;
+    else if (day < 1 || day > 31)
+        std::cerr << "Error: bad input => " << date << std::endl;
+    else if (!is_leap_year(year)){
         if (month == 2 && day > 28)
-            throw("invalid day");
+            std::cerr << "Error: bad input => " << date << std::endl;
     }
-    else{
+    else if (is_leap_year(year)){
         if (month == 2 && day > 29)
-            throw("invalid day");
+            std::cerr << "Error: bad input => " << date << std::endl;
     }
     std::cout << year << std::endl;
 }
@@ -118,7 +122,6 @@ void parce_file(std::string file){
             end = line.length();
         parce_date(line, end);
         parce_value(value);
-        check_leap_year(line);
-    }
-        
+        check_date(line);
+    }  
 }
