@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:19 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 15:52:51 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/27 15:54:31 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main(int ac, char **av){
         if (ac == 2 && av[1][0] != '\0'){
             std::string file = av[1];
             parce_file(file);
-            // _data();
+            _data();
         }
         else
             throw("Invalid param");
