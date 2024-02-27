@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 12:20:02 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/27 12:40:27 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void parce_value(std::string value){
     int point = 0;
     for(size_t k=0; k < value.length(); k++){
-            if(value[0] != ' ' || (value[k] != '-' && value[k] != '+' && value[k] != ' ' && value[k] != '.' && !isdigit(value[k])))
+            if(value[0] != ' ' || (value[k] != '+' && value[k] != ' ' && value[k] != '.' && !isdigit(value[k])))
                 throw("value");
             else if (value[0] == ' ' && value[1] == '\0')
                 throw("value");
-            else if ((k != 0 && value[k] == ' ') || (k != 1 && (value[k] == '+' || value[k] == '-')))
+            else if ((k != 0 && value[k] == ' ') || (k != 1 && (value[k] == '+')))
                 throw("value");
-            else if ((value[k] == '+' || value[k] == '-') && !isdigit(value[k + 1]))
+            else if ((value[k] == '+') && !isdigit(value[k + 1]))
                 throw("value");
             else if (value[k] == '.')
                 point++;
@@ -31,7 +31,7 @@ void parce_value(std::string value){
 }
 
 
-void parce_key(std::string line, int end){
+void parce_date(std::string line, int end){
     int flag = 0;
     int i = 0;
     while(i < end){
@@ -110,7 +110,7 @@ void parce_file(std::string file){
         }
         if (end == -1)
             end = line.length();
-        parce_key(line, end);
+        parce_date(line, end);
         parce_value(value);
         check_leap_year(line);
     }
