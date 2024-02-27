@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:16 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 18:06:46 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/27 18:47:15 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <sstream>
 void parsing(std::string file, std::map<size_t, std::string> myMap);
 void date_format(std::string line, int end);
-void value_format(std::string value);
+int  value_format(std::string value);
 size_t convert_to_number(const std::string& date);
 
 #endif

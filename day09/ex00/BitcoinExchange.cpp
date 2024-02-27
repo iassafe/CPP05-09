@@ -6,13 +6,13 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 18:39:14 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/27 19:02:55 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"BitcoinExchange.hpp"
 
-void value_format(std::string value){
+int value_format(std::string value){
     int point = 0;
     for(size_t k=0; k < value.length(); k++){
             if(value[0] != ' ' || (value[k] != '-' && \
@@ -32,10 +32,15 @@ void value_format(std::string value){
     }
     char *endptr;
     double val = strtod(value.c_str(), &endptr);
-    if (val < 0)
+    if (val < 0){
         std::cerr << "Error: not a positive number." << std::endl;
-    if (val > 1000)
+        return (0);
+    }
+    else if (val > 1000){
         std::cerr << "Error: too large a number." << std::endl;
+        return (0);
+    }
+    return(1);
 }
 
 
@@ -69,13 +74,14 @@ int is_leap_year(int year){
 }
 
 
-void ft_execute(size_t date, std::string value, std::map<size_t, std::string> myMap){
+void ft_execute(size_t date, std::string value, std::map<size_t, std::string> myMap, std::string date_str){
     // std::cout << date << " " << value << std::endl;
     std::map<size_t, std::string>::iterator it = myMap.lower_bound(date);
-    std::cout << (convert_to_number(value) * (convert_to_number(it->second) - 1)) << std::endl;
+    it--;
+    std::cout << date_str << " => "<< value << " = " << (it->second)<< std::endl;
 }
 
-void check_valid_date(std::string line, std::map<size_t, std::string> myMap){
+void check_valid_date(std::string line, std::map<size_t, std::string> myMap, int valid_value){
     size_t date_pos = line.find('|');
     if (date_pos == std::string::npos)
         date_pos = line.length();
@@ -103,10 +109,10 @@ void check_valid_date(std::string line, std::map<size_t, std::string> myMap){
         std::cerr << "Error: bad input => " << date << std::endl;
     else if (date_pos == line.length())
         std::cerr << "Error: bad input => " << date << std::endl;
-    else{
+    else if (valid_value){
         std::string value = line.substr(date_pos + 1, line.length());
         size_t nb_date = convert_to_number(date);
-        ft_execute(nb_date, value, myMap);
+        ft_execute(nb_date, value, myMap, date);
     }
     
 }
@@ -134,7 +140,7 @@ void parsing(std::string file, std::map<size_t, std::string> myMap){
         if (end == -1)
             end = line.length();
         date_format(line, end);
-        value_format(value);
-        check_valid_date(line, myMap);
+        int valid_value = value_format(value);
+        check_valid_date(line, myMap, valid_value);
     }  
 }
