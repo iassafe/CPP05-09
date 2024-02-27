@@ -6,13 +6,13 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 16:04:38 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/27 18:34:51 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"BitcoinExchange.hpp"
 
-void parce_value(std::string value){
+void value_format(std::string value){
     int point = 0;
     for(size_t k=0; k < value.length(); k++){
             if(value[0] != ' ' || (value[k] != '-' && \
@@ -39,7 +39,7 @@ void parce_value(std::string value){
 }
 
 
-void parce_date(std::string line, int end){
+void date_format(std::string line, int end){
     int flag = 0;
     int i = 0;
     while(i < end){
@@ -68,7 +68,14 @@ int is_leap_year(int year){
     return 0;
 }
 
-void check_date(std::string line){
+
+void ft_execute(size_t date, std::string value, std::map<size_t, std::string> myMap){
+    // std::cout << date << " " << value << std::endl;
+    std::map<size_t, std::string>::iterator it = myMap.lower_bound(date);
+    std::cout << (convert_to_number(value) * (convert_to_number(it->second) - 1)) << std::endl;
+}
+
+void check_valid_date(std::string line, std::map<size_t, std::string> myMap){
     size_t date_pos = line.find('|');
     if (date_pos == std::string::npos)
         date_pos = line.length();
@@ -91,12 +98,20 @@ void check_date(std::string line){
     else if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
         std::cerr << "Error: bad input => " << date << std::endl;
     else if (!is_leap_year(year) && (month == 2 && day > 28))
-            std::cerr << "Error: bad input => " << date << std::endl;
+        std::cerr << "Error: bad input => " << date << std::endl;
     else if (is_leap_year(year) && month == 2 && day > 29)
-            std::cerr << "Error: bad input => " << date << std::endl;
+        std::cerr << "Error: bad input => " << date << std::endl;
+    else if (date_pos == line.length())
+        std::cerr << "Error: bad input => " << date << std::endl;
+    else{
+        std::string value = line.substr(date_pos + 1, line.length());
+        size_t nb_date = convert_to_number(date);
+        ft_execute(nb_date, value, myMap);
+    }
+    
 }
 
-void parce_file(std::string file){
+void parsing(std::string file, std::map<size_t, std::string> myMap){
     std::string line;
     std::ifstream inputFile(file);
     if (!inputFile)
@@ -118,8 +133,8 @@ void parce_file(std::string file){
         }
         if (end == -1)
             end = line.length();
-        parce_date(line, end);
-        parce_value(value);
-        check_date(line);
+        date_format(line, end);
+        value_format(value);
+        check_valid_date(line, myMap);
     }  
 }

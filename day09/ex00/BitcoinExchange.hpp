@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:16 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 16:16:01 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/27 18:06:46 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 #include<fstream>
 #include<map>
 #include <sstream>
-void parce_file(std::string file);
-void parce_date(std::string line, int end);
-void parce_value(std::string value);
+void parsing(std::string file, std::map<size_t, std::string> myMap);
+void date_format(std::string line, int end);
+void value_format(std::string value);
+size_t convert_to_number(const std::string& date);
 
 #endif
