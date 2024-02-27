@@ -6,11 +6,40 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 19:19:58 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/27 19:27:10 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"BitcoinExchange.hpp"
+
+size_t _convert(const std::string& date){
+    std::istringstream s(date);
+    size_t year, month, day;
+    char dash;
+    s >> year >> dash >> month >> dash >> day;
+    size_t result = year * 10000 + month * 100 + day;
+    return result;
+}
+
+std::map<size_t, std::string> push_data(void){
+    std::string line;
+    std::map<size_t, std::string> myMap;
+    std::ifstream inputFile("data.csv");
+    if (!inputFile)
+        throw("Opening file");
+    if(!std::getline(inputFile, line))
+        throw("invalid data");
+    while(std::getline(inputFile, line)){
+        size_t date_pos = line.find(',');
+        std::string date_str = line.substr(0, date_pos);
+        std::string value = line.substr(date_pos + 1, line.length());
+        size_t date = _convert(date_str);
+        myMap.insert(std::make_pair(date, value));
+    }
+    return(myMap);
+}
+
+
 
 int value_format(std::string value){
     int point = 0;
@@ -114,7 +143,7 @@ void check_valid_date(std::string line, std::map<size_t, std::string> myMap, int
         std::cerr << "Error: bad input => " << date << std::endl;
     else if (valid_value){
         std::string value = line.substr(date_pos + 1, line.length());
-        size_t nb_date = convert_to_number(date);
+        size_t nb_date = _convert(date);
         ft_execute(nb_date, value, myMap, date);
     }
     
