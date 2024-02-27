@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:19 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 09:45:04 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/27 11:31:49 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int main(int ac, char **av){
         }
         else
             throw("Invalid param");
-        
     }
     catch(const char *s){
         std::cerr<< "Error: " << s << std::endl;

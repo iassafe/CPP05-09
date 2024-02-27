@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 11:01:53 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/27 12:20:02 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void parce_value(std::string value){
     int point = 0;
-        std::cout << value << std::endl;
     for(size_t k=0; k < value.length(); k++){
             if(value[0] != ' ' || (value[k] != '-' && value[k] != '+' && value[k] != ' ' && value[k] != '.' && !isdigit(value[k])))
                 throw("value");
@@ -45,13 +44,48 @@ void parce_key(std::string line, int end){
             i++;
             count++;
         }
-        if (line[i] == ' ')
-            i++;
         if (flag == 1 || flag == 2)
             if (count != 2)
                 throw("months or days");
         flag++;
         i++;
+    }
+    if (flag != 3)
+        throw("invalid date");
+}
+
+int is_leap_year(int year){
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+        return 1;
+    return 0;
+}
+
+void check_leap_year(std::string line){
+    size_t date_pos = line.find('|');
+    if (date_pos == std::string::npos)
+        date_pos = line.length();
+    std::string date = line.substr(0, date_pos);
+    size_t year_pos = date.find('-');
+    size_t month_pos = date.find('-', year_pos + 1);
+    if (year_pos == std::string::npos || month_pos == std::string::npos)
+        throw ("Invalid date");
+    std::string year_str = date.substr(0, year_pos);
+    std::string month_str = date.substr(year_pos + 1, month_pos - year_pos - 1);
+    std::string day_str = date.substr(month_pos + 1);
+    int year = atoi(year_str.c_str());
+    int month = atoi(month_str.c_str());
+    int day = atoi(day_str.c_str());
+    if (month < 1 || month > 12)
+        throw("invalid month");
+    if (day < 1 || day > 31)
+        throw("invalid day");
+    if (!is_leap_year(year)){
+        if (month == 2 && day > 28)
+            throw("invalid day");
+    }
+    else{
+        if (month == 2 && day > 29)
+            throw("invalid day");
     }
 }
 
@@ -64,7 +98,6 @@ void parce_file(std::string file){
     if (line != "date | value")
         throw("date | value");
     while(std::getline(inputFile, line)){
-    std::cout << "line: " << line << std::endl;
         int end = -1;
         std::string value;
         for(size_t j = 0; j < line.length(); j++){
@@ -79,6 +112,7 @@ void parce_file(std::string file){
             end = line.length();
         parce_key(line, end);
         parce_value(value);
+        check_leap_year(line);
     }
         
 }
