@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 14:52:15 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/27 15:51:49 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,12 @@ void check_date(std::string line){
         std::cerr << "Error: bad input => " << date << std::endl;
     else if (day < 1 || day > 31)
         std::cerr << "Error: bad input => " << date << std::endl;
-    else if (!is_leap_year(year)){
-        if (month == 2 && day > 28)
+    else if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+        std::cerr << "Error: bad input => " << date << std::endl;
+    else if (!is_leap_year(year) && (month == 2 && day > 28))
             std::cerr << "Error: bad input => " << date << std::endl;
-    }
-    else if (is_leap_year(year)){
-        if (month == 2 && day > 29)
+    else if (is_leap_year(year) && month == 2 && day > 29)
             std::cerr << "Error: bad input => " << date << std::endl;
-    }
     std::cout << year << std::endl;
 }
 
@@ -104,7 +102,8 @@ void parce_file(std::string file){
     std::ifstream inputFile(file);
     if (!inputFile)
         throw("Opening file");
-    std::getline(inputFile, line);
+    if(!std::getline(inputFile, line))
+        throw("empty file");
     if (line != "date | value")
         throw("date | value");
     while(std::getline(inputFile, line)){
