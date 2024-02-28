@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 19:27:10 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/28 09:55:06 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 size_t _convert(const std::string& date){
     std::istringstream s(date);
-    size_t year, month, day;
+    size_t year;
+    size_t month;
+    size_t day;
     char dash;
     s >> year >> dash >> month >> dash >> day;
     size_t result = year * 10000 + month * 100 + day;
@@ -26,9 +28,9 @@ std::map<size_t, std::string> push_data(void){
     std::map<size_t, std::string> myMap;
     std::ifstream inputFile("data.csv");
     if (!inputFile)
-        throw("Opening file");
+        throw("Could not open file.");
     if(!std::getline(inputFile, line))
-        throw("invalid data");
+        throw("Empty file.");
     while(std::getline(inputFile, line)){
         size_t date_pos = line.find(',');
         std::string date_str = line.substr(0, date_pos);
@@ -40,22 +42,21 @@ std::map<size_t, std::string> push_data(void){
 }
 
 
-
 int value_format(std::string value){
     int point = 0;
     for(size_t k=0; k < value.length(); k++){
             if(value[0] != ' ' || (value[k] != '-' && \
             value[k] != '+' && value[k] != ' ' \
             && value[k] != '.' && !isdigit(value[k])))
-                throw("value");
+                throw("Invalid value.");
             else if (value[0] == ' ' && value[1] == '\0')
-                throw("value");
+                throw("Invalid value.");
             else if ((k != 0 && value[k] == ' ') || (k != 1 && \
             (value[k] == '+' || value[k] == '-')))
-                throw("value");
+                throw("Invalid value.");
             else if (((value[k] == '+' || value[k] == '-') && \
             !isdigit(value[k + 1])) || point > 1)
-                throw("value");
+                throw("Invalid value.");
             else if (value[k] == '.')
                 point++;
     }
@@ -79,21 +80,21 @@ void date_format(std::string line, int end){
     while(i < end){
         int count = 0;
         if (!isdigit(line[0]))
-            throw("years");
+            throw("Invalid date.");
         while (line[i] && line[i] != '-' && i < end && line[i] != ' '){
             if (!isdigit(line[i]))
-                throw("years");
+                throw("Invalid date.");
             i++;
             count++;
         }
         if (flag == 1 || flag == 2)
             if (count != 2)
-                throw("months or days");
+                throw("Invalid date.");
         flag++;
         i++;
     }
     if (flag != 3)
-        throw("invalid date");
+        throw("invalid date.");
 }
 
 int is_leap_year(int year){
@@ -101,7 +102,6 @@ int is_leap_year(int year){
         return 1;
     return 0;
 }
-
 
 void ft_execute(size_t date, std::string value, std::map<size_t, std::string> myMap, std::string date_str){
     std::map<size_t, std::string>::iterator it = myMap.lower_bound(date);
@@ -121,7 +121,7 @@ void check_valid_date(std::string line, std::map<size_t, std::string> myMap, int
     size_t year_pos = date.find('-');
     size_t month_pos = date.find('-', year_pos + 1);
     if (year_pos == std::string::npos || month_pos == std::string::npos)
-        throw ("Invalid date");
+        throw ("Invalid date.");
     std::string year_str = date.substr(0, year_pos);
     std::string month_str = date.substr(year_pos + 1, month_pos - year_pos - 1);
     std::string day_str = date.substr(month_pos + 1);
@@ -146,16 +146,15 @@ void check_valid_date(std::string line, std::map<size_t, std::string> myMap, int
         size_t nb_date = _convert(date);
         ft_execute(nb_date, value, myMap, date);
     }
-    
 }
 
 void parsing(std::string file, std::map<size_t, std::string> myMap){
     std::string line;
     std::ifstream inputFile(file);
     if (!inputFile)
-        throw("Opening file");
+        throw("Could not open file.");
     if(!std::getline(inputFile, line))
-        throw("empty file");
+        throw("empty file.");
     if (line != "date | value")
         throw("date | value");
     while(std::getline(inputFile, line)){
@@ -164,7 +163,7 @@ void parsing(std::string file, std::map<size_t, std::string> myMap){
         for(size_t j = 0; j < line.length(); j++){
             if (line[j] == '|'){
                 if (line[j + 1] != ' ')
-                    throw("value");
+                    throw("Invalid value.");
                 end = j;
                 value = &line[j + 1];
             }
