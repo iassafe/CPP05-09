@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:18:23 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/25 18:41:50 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/28 12:31:17 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ class Span{
 		~Span();
 
         void addNumber(int nb);
-        int shortestSpan();
-        int longestSpan();
+        int shortestSpan() const;
+        int longestSpan() const;
 
     class out_of_range : public std::exception{
         public:

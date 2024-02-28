@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:12:13 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/25 18:35:30 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/28 11:19:07 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int main(){
         vec.push_back(3);
 
         std::vector<int>::iterator result1 = easyfind(vec, 3);
-        std::cout << "Value found at position: " << std::distance(vec.begin(), result1)<< std::endl;
+        std::cout << "3 found at position: " << std::distance(vec.begin(), result1)<< std::endl;
 
         std::vector<int>::iterator result2 = easyfind(vec, 7);
-        std::cout << "Value found at position: " << std::distance(vec.begin(), result2) << std::endl;
+        std::cout << "7 found at position: " << std::distance(vec.begin(), result2) << std::endl;
     }
     catch(const std::exception& e){
         std::cerr << "Error: " << e.what() << std::endl;
@@ -45,8 +45,14 @@ int main(){
         lst.push_back(4);
         lst.push_back(5);
 
-        std::list<int>::iterator result1 = easyfind(lst, 3);
-        std::cout << "Value found at position1: " <<std::distance(lst.begin(), result1) << std::endl;
+        std::list<int>::iterator result3 = easyfind(lst, 3);
+        std::cout << "3 found at position: " <<std::distance(lst.begin(), result3) << std::endl;
+        
+        std::list<int>::iterator result4 = easyfind(lst, 30);
+        std::cout << "30 found at position: " <<std::distance(lst.begin(), result4) << std::endl;
+        
+        std::list<int>::iterator result5 = easyfind(lst, 5);
+        std::cout << "5 found at position: " <<std::distance(lst.begin(), result5) << std::endl;
     }
     catch(const std::exception& e){
         std::cerr << "Error: " << e.what() << std::endl;

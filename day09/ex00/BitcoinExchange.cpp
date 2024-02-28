@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/28 09:55:06 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/28 10:01:24 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ std::map<size_t, std::string> push_data(void){
     }
     return(myMap);
 }
-
 
 int value_format(std::string value){
     int point = 0;

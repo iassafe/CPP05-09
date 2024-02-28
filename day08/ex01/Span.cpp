@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:18:20 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/25 18:43:10 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/28 12:30:31 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void Span::addNumber(int nb){
     this->_numbers.push_back(nb);
 }
 
-int Span::longestSpan(){
+int Span::longestSpan() const{
     if (this->_numbers.size() <= 1 || this->N <= 1)
         throw out_of_range();
     int max = this->_numbers[0];
@@ -55,14 +55,15 @@ int Span::longestSpan(){
     return (max - min);
 }
 
-int Span::shortestSpan(){
+int Span::shortestSpan() const{
     if (this->_numbers.size() <= 1 || this->N <= 1)
         throw out_of_range();
-    int min;
-    min = std::abs(this->_numbers[0] - this->_numbers[1]);
-    for(size_t i = 1; i < (this->_numbers.size() - 1); i++){
-        if(min > abs(this->_numbers[i] - this->_numbers[i + 1]))
-            min = abs(this->_numbers[i] - this->_numbers[i + 1]);
+    std::vector<int> tmp_nbs = this->_numbers;
+    std::sort(tmp_nbs.begin(), tmp_nbs.end());
+    int min = (tmp_nbs[1] - tmp_nbs[0]);
+    for(size_t i = 1; i < tmp_nbs.size(); i++){
+        if(min > (tmp_nbs[i] - tmp_nbs[i - 1]))
+            min = (tmp_nbs[i] - tmp_nbs[i - 1]);
     }
     return min;
 }
