@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:18:23 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/28 12:31:17 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/28 15:29:39 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define SPAN_HPP
 #include<iostream>
 #include<vector>
+#include<iterator>
 
 class Span{
     private:
@@ -29,6 +30,7 @@ class Span{
         void addNumber(int nb);
         int shortestSpan() const;
         int longestSpan() const;
+        void addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 
     class out_of_range : public std::exception{
         public:

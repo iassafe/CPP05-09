@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 17:52:14 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/26 16:08:27 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/28 14:24:43 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int main()
     MutantStack<int>::iterator ite = mstack.end();
     ++it;
     --it;
+    std::cout << "Elements of MutantStack mstack: " << std::endl;
     while (it != ite){
         std::cout << *it << std::endl;
         ++it;
@@ -57,6 +58,11 @@ int main()
     lst.push_back(3);
     lst.push_back(5);
     lst.push_back(737);
+    lst.push_back(4);
+    lst.push_back(9);
+    lst.push_back(17);
+    lst.push_back(20);
+    lst.push_back(0);
     std::list<int>::iterator itt = lst.begin();
     std::list<int>::iterator itte = lst.end();
     ++itt;
@@ -77,6 +83,11 @@ int main()
     vec.push_back(3);
     vec.push_back(5);
     vec.push_back(737);
+    vec.push_back(4);
+    vec.push_back(9);
+    vec.push_back(17);
+    vec.push_back(20);
+    vec.push_back(0);
     std::vector<int>::iterator it_vec = vec.begin();
     std::vector<int>::iterator ite_vec = vec.end();
     ++it_vec;

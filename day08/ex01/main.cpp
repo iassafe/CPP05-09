@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:18:14 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/28 12:36:56 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/28 15:29:49 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 int main(){
     try{
         Span sp(5);
-        sp.addNumber(6);
-        sp.addNumber(3);
-        sp.addNumber(17);
-        sp.addNumber(9);
-        sp.addNumber(11);
+        std::vector<int> vec;
+        vec.push_back(6);
+        vec.push_back(3);
+        vec.push_back(17);
+        vec.push_back(9);
+        vec.push_back(11);
+        
+        sp.addRange(vec.begin(), vec.end());
         std::cout << sp.shortestSpan() << std::endl;
         std::cout << sp.longestSpan() << std::endl;
     }
@@ -28,9 +31,9 @@ int main(){
     }
     std::cout << "----" << std::endl;
     try{
-        Span sp(10000);
+        Span sp(20000);
         std::srand(std::time(0));
-        for(int i = 0; i < 10000; i++){
+        for(int i = 0; i < 20000; i++){
             int nb = std::rand();
             sp.addNumber(nb);
         }
