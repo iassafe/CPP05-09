@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 10:05:26 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/28 10:08:27 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/29 11:30:10 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 #include<iostream>
 
 
+void _check(std::string str);
 
 #endif
