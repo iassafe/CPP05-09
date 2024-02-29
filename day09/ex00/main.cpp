@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:19 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/27 19:25:03 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/28 18:00:28 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(int ac, char **av){
             std::string file = av[1];
             std::map<size_t, std::string> myMap;
             myMap = push_data();
-            parsing(file, myMap);
+            _check(file, myMap);
         }
         else
             throw("Invalid param");

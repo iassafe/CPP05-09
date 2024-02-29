@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/28 10:01:24 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/29 10:27:52 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ int value_format(std::string value){
             if(value[0] != ' ' || (value[k] != '-' && \
             value[k] != '+' && value[k] != ' ' \
             && value[k] != '.' && !isdigit(value[k])))
-                throw("Invalid value.");
+                throw("Invalid input.");
             else if (value[0] == ' ' && value[1] == '\0')
-                throw("Invalid value.");
+                throw("Invalid input.");
             else if ((k != 0 && value[k] == ' ') || (k != 1 && \
             (value[k] == '+' || value[k] == '-')))
-                throw("Invalid value.");
+                throw("Invalid input.");
             else if (((value[k] == '+' || value[k] == '-') && \
             !isdigit(value[k + 1])) || point > 1)
-                throw("Invalid value.");
+                throw("Invalid input.");
             else if (value[k] == '.')
                 point++;
     }
@@ -79,21 +79,21 @@ void date_format(std::string line, int end){
     while(i < end){
         int count = 0;
         if (!isdigit(line[0]))
-            throw("Invalid date.");
+            throw("Invalid input.");
         while (line[i] && line[i] != '-' && i < end && line[i] != ' '){
             if (!isdigit(line[i]))
-                throw("Invalid date.");
+                throw("Invalid input.");
             i++;
             count++;
         }
         if (flag == 1 || flag == 2)
             if (count != 2)
-                throw("Invalid date.");
+                throw("Invalid input.");
         flag++;
         i++;
     }
     if (flag != 3)
-        throw("invalid date.");
+        throw("Invalid input.");
 }
 
 int is_leap_year(int year){
@@ -120,7 +120,7 @@ void check_valid_date(std::string line, std::map<size_t, std::string> myMap, int
     size_t year_pos = date.find('-');
     size_t month_pos = date.find('-', year_pos + 1);
     if (year_pos == std::string::npos || month_pos == std::string::npos)
-        throw ("Invalid date.");
+        throw ("Invalid input.");
     std::string year_str = date.substr(0, year_pos);
     std::string month_str = date.substr(year_pos + 1, month_pos - year_pos - 1);
     std::string day_str = date.substr(month_pos + 1);
@@ -147,7 +147,7 @@ void check_valid_date(std::string line, std::map<size_t, std::string> myMap, int
     }
 }
 
-void parsing(std::string file, std::map<size_t, std::string> myMap){
+void _check(std::string file, std::map<size_t, std::string> myMap){
     std::string line;
     std::ifstream inputFile(file);
     if (!inputFile)
@@ -162,7 +162,7 @@ void parsing(std::string file, std::map<size_t, std::string> myMap){
         for(size_t j = 0; j < line.length(); j++){
             if (line[j] == '|'){
                 if (line[j + 1] != ' ')
-                    throw("Invalid value.");
+                    throw("Invalid input.");
                 end = j;
                 value = &line[j + 1];
             }

@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:18:20 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/28 15:33:49 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/29 10:17:25 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ Span &Span::operator=(Span const &copy){
 
 void Span::addNumber(int nb){
     if (this->_numbers.size() >= this->N)
-        throw Span::out_of_range();
+        throw out_of_range();
     this->_numbers.push_back(nb);
 }
 
@@ -68,10 +68,10 @@ int Span::shortestSpan() const{
 }
 
 void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end){
-        if ((this->_numbers.size() + std::distance(begin, end)) > this->N){
-            throw out_of_range();
-        }
-        this->_numbers.insert(this->_numbers.end(), begin, end);
+    if ((this->_numbers.size() + std::distance(begin, end)) > this->N){
+        throw out_of_range();
+    }
+    this->_numbers.insert(this->_numbers.end(), begin, end);
 }
 
 const char* Span::out_of_range::what() const throw(){
