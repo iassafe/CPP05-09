@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/29 10:30:54 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/29 10:39:52 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int value_format(std::string value){
     }
     return(1);
 }
-
 
 void date_format(std::string line, int end){
     int flag = 0;
