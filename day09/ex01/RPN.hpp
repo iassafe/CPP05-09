@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 10:05:26 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/29 16:08:14 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/29 17:07:28 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stack>
 
 void _check(std::string str);
-void _split(std::string str);
+void _rpn(std::string str);
+void _valid_rpn(std::string str);
 
 #endif
