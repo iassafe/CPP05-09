@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/29 10:39:52 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/02/29 10:48:18 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,17 +101,20 @@ int is_leap_year(int year){
     return 0;
 }
 
-void ft_execute(size_t date, std::string value, std::map<size_t, std::string> myMap, std::string date_str){
+void ft_execute(size_t date, std::string value, \
+    std::map<size_t, std::string> myMap, std::string date_str){
     std::map<size_t, std::string>::iterator it = myMap.lower_bound(date);
     if (it->first != date && it != myMap.begin())
         --it;
     char *end;
     double nb_value = strtod(value.c_str(), &end);
     double it_value = strtod(it->second.c_str(), &end);
-    std::cout << date_str << " => "<< value << " = " << nb_value * it_value << std::endl;
+    std::cout << date_str << " => "<< value << " = " 
+    << nb_value * it_value << std::endl;
 }
 
-void check_valid_date(std::string line, std::map<size_t, std::string> myMap, int valid_value){
+void check_valid_date(std::string line, std::map<size_t, std::string> myMap, \
+                        int valid_value){
     size_t date_pos = line.find('|');
     if (date_pos == std::string::npos)
         date_pos = line.length();
