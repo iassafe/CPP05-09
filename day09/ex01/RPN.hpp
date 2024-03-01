@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 10:05:26 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/29 17:07:28 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/01 10:42:07 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,14 @@
 #include <iostream>
 #include <sstream>
 #include <stack>
-
-void _check(std::string str);
-void _rpn(std::string str);
-void _valid_rpn(std::string str);
+class RPN{
+    private:
+        std::string _str;
+    public:
+        RPN(std::string str);
+        RPN(RPN const &copy);
+        RPN &operator=(RPN const &copy);
+        ~RPN();
+};
 
 #endif
