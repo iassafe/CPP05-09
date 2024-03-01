@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 10:05:22 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/01 17:08:52 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/01 17:38:58 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,19 @@ void RPN::_check(){
             }
         }
         if (!isdigit(this->_str[i]) && this->_str[i] != ' ' && \
-            this->_str[i] != '+' && this->_str[i] != '-' && this->_str[i] != '/' && this->_str[i] != '*')
+            this->_str[i] != '+' && this->_str[i] != '-' && \
+            this->_str[i] != '/' && this->_str[i] != '*')
             throw("Invalid input!");
-        else if ((this->_str[i] == '-' || this->_str[i] == '+') && (this->_str[i + 1] != ' ' && this->_str[i + 1]))
+        else if ((this->_str[i] == '-' || this->_str[i] == '+') && \
+            (this->_str[i + 1] != ' ' && this->_str[i + 1]))
             throw("Invalid input!");
-        else if (isdigit(this->_str[i]) && (this->_str[i + 1] != ' ' || ( i > 0 && this->_str[i - 1] != ' ')))
+        else if (isdigit(this->_str[i]) && (this->_str[i + 1] != ' ' \
+            || ( i > 0 && this->_str[i - 1] != ' ')))
             throw("Invalid input!");
-        else if (((this->_str[i] == '/' || this->_str[i] == '*') && (this->_str[i + 1] != ' ' && this->_str[i + 1]))
-                || ((this->_str[i] == '/' || this->_str[i] == '*') && this->_str[i - 1] != ' '))
+        else if (((this->_str[i] == '/' || this->_str[i] == '*') \
+            && (this->_str[i + 1] != ' ' && this->_str[i + 1]))
+            || ((this->_str[i] == '/' || this->_str[i] == '*') \
+            && this->_str[i - 1] != ' '))
             throw("Invalid input!");
     }
 }
