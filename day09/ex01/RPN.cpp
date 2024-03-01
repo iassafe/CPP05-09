@@ -6,11 +6,14 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 10:05:22 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/01 10:41:43 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/01 17:08:52 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"RPN.hpp"
+
+RPN::RPN(std::string str): _str(str){
+}
 
 RPN::RPN(RPN const &copy){
 	*this=copy;
@@ -26,8 +29,8 @@ RPN &RPN::operator=(RPN const &copy){
     return(*this);
 }
 
-static void _valid_rpn(std::string str){
-    std::istringstream iss(str);
+void RPN::_valid_rpn(){
+    std::istringstream iss(this->_str);
     std::string token;
     int count_nb = 0;
     int count_op = 0;
@@ -42,8 +45,8 @@ static void _valid_rpn(std::string str){
     
 }
 
-static void _rpn(std::string str){
-    std::istringstream iss(str);
+void RPN::_rpn(){
+    std::istringstream iss(this->_str);
     std::string token;
     char *endptr;
     std::stack<int> stack;
@@ -73,35 +76,29 @@ static void _rpn(std::string str){
         std::cout << stack.top() << std::endl;
 }
 
-static void _check(std::string str){
-    for(size_t i = 0; i < str.length(); i++){
-        if (str.length() > 2 ){
-            if (!isdigit(str[0]))
+void RPN::_check(){
+    for(size_t i = 0; i < this->_str.length(); i++){
+        if (this->_str.length() > 2 ){
+            if (!isdigit(this->_str[0]))
                 throw("Invalid input!");
             else{
                 int k = 1;
-                while(str[k] == ' '){
+                while(this->_str[k] == ' '){
                     k++;
                 }
-                if(!isdigit(str[k]))
+                if(!isdigit(this->_str[k]))
                     throw("Invalid input!");
             }
         }
-        if (!isdigit(str[i]) && str[i] != ' ' && \
-            str[i] != '+' && str[i] != '-' && str[i] != '/' && str[i] != '*')
+        if (!isdigit(this->_str[i]) && this->_str[i] != ' ' && \
+            this->_str[i] != '+' && this->_str[i] != '-' && this->_str[i] != '/' && this->_str[i] != '*')
             throw("Invalid input!");
-        else if ((str[i] == '-' || str[i] == '+') && (str[i + 1] != ' ' && str[i + 1]))
+        else if ((this->_str[i] == '-' || this->_str[i] == '+') && (this->_str[i + 1] != ' ' && this->_str[i + 1]))
             throw("Invalid input!");
-        else if (isdigit(str[i]) && (str[i + 1] != ' ' || ( i > 0 && str[i - 1] != ' ')))
+        else if (isdigit(this->_str[i]) && (this->_str[i + 1] != ' ' || ( i > 0 && this->_str[i - 1] != ' ')))
             throw("Invalid input!");
-        else if (((str[i] == '/' || str[i] == '*') && (str[i + 1] != ' ' && str[i + 1]))
-                || ((str[i] == '/' || str[i] == '*') && str[i - 1] != ' '))
+        else if (((this->_str[i] == '/' || this->_str[i] == '*') && (this->_str[i + 1] != ' ' && this->_str[i + 1]))
+                || ((this->_str[i] == '/' || this->_str[i] == '*') && this->_str[i - 1] != ' '))
             throw("Invalid input!");
     }
-}
-
-RPN::RPN(std::string str): _str(str){
-	_check(this->_str);
-    _valid_rpn(this->_str);
-    _rpn(this->_str);
 }

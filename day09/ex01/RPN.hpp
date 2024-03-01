@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 10:05:26 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/01 10:42:07 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/01 17:06:29 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ class RPN{
         RPN(RPN const &copy);
         RPN &operator=(RPN const &copy);
         ~RPN();
+        void _check();
+        void _rpn();
+        void _valid_rpn();
 };
 
 #endif
