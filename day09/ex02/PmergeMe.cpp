@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/01 18:47:02 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/01 18:57:53 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,24 @@
 // it+= (i - 1);
 // std::cout << *it << std::endl;
 
-void _isnumber(std::string str){
+static void _isnumber(std::string str){
     size_t pos = str.find_first_not_of("0123456789");
      if (pos != std::string::npos)
         throw("Error!");
+}
+
+void PmergeMe::_merge(int left, int mid, int right){
+    
+}
+
+void PmergeMe::merge_sort(int left, int right){
+    if (left < right){
+        int mid = left + (right - left) / 2;
+        PmergeMe::merge_sort(left, mid);
+        PmergeMe::merge_sort(mid + 1, right);
+        
+        PmergeMe::_merge(left, mid, right);
+    }
 }
 
 PmergeMe::PmergeMe(int ac, char **av){
