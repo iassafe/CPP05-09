@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:16 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/01 10:30:18 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/01 16:57:08 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ class BitcoinExchange{
         BitcoinExchange(BitcoinExchange const &copy);
         BitcoinExchange &operator=(BitcoinExchange const &copy);
         ~BitcoinExchange();
+        void _check(void);
+        void ft_execute(size_t date, std::string value, std::string date_str);
+        void check_valid_date(std::string line, int valid_value);
 };
 
 #endif

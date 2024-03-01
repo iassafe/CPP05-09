@@ -6,27 +6,11 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/01 10:31:49 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/01 16:57:43 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"BitcoinExchange.hpp"
-
-
-BitcoinExchange::BitcoinExchange(BitcoinExchange const &copy){
-	*this=copy;
-}
-
-BitcoinExchange::~BitcoinExchange(){
-}
-
-BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &copy){
-    if (this != &copy){
-        this->_file = copy._file;
-        this->_myMap = copy._myMap;
-    }
-    return(*this);
-}
 
 static size_t _convert(const std::string& date){
     std::istringstream s(date);
@@ -55,6 +39,25 @@ static std::map<size_t, std::string> push_data(void){
         myMap.insert(std::make_pair(date, value));
     }
     return(myMap);
+}
+
+BitcoinExchange::BitcoinExchange(std::string file): _file(file){
+    this->_myMap = push_data();
+}
+
+BitcoinExchange::BitcoinExchange(BitcoinExchange const &copy){
+	*this=copy;
+}
+
+BitcoinExchange::~BitcoinExchange(){
+}
+
+BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &copy){
+    if (this != &copy){
+        this->_file = copy._file;
+        this->_myMap = copy._myMap;
+    }
+    return(*this);
 }
 
 static int value_format(std::string value){
@@ -117,10 +120,9 @@ static int is_leap_year(int year){
     return 0;
 }
 
-static void ft_execute(size_t date, std::string value, \
-    std::map<size_t, std::string> myMap, std::string date_str){
-    std::map<size_t, std::string>::iterator it = myMap.lower_bound(date);
-    if (it->first != date && it != myMap.begin())
+void BitcoinExchange::ft_execute(size_t date, std::string value, std::string date_str){
+    std::map<size_t, std::string>::iterator it = this->_myMap.lower_bound(date);
+    if (it->first != date && it != this->_myMap.begin())
         --it;
     char *end;
     double nb_value = strtod(value.c_str(), &end);
@@ -129,8 +131,7 @@ static void ft_execute(size_t date, std::string value, \
     << nb_value * it_value << std::endl;
 }
 
-static void check_valid_date(std::string line, \
-            std::map<size_t, std::string> myMap, int valid_value){
+void BitcoinExchange::check_valid_date(std::string line, int valid_value){
     size_t date_pos = line.find('|');
     if (date_pos == std::string::npos)
         date_pos = line.length();
@@ -161,13 +162,13 @@ static void check_valid_date(std::string line, \
     else if (valid_value){
         std::string value = line.substr(date_pos + 1, line.length());
         size_t nb_date = _convert(date);
-        ft_execute(nb_date, value, myMap, date);
+        BitcoinExchange::ft_execute(nb_date, value, date);
     }
 }
 
-static void _check(std::string file, std::map<size_t, std::string> myMap){
+void BitcoinExchange::_check(void){
     std::string line;
-    std::ifstream inputFile(file);
+    std::ifstream inputFile(this->_file);
     if (!inputFile)
         throw("Could not open file.");
     if(!std::getline(inputFile, line))
@@ -189,11 +190,6 @@ static void _check(std::string file, std::map<size_t, std::string> myMap){
             end = line.length();
         date_format(line, end);
         int valid_value = value_format(value);
-        check_valid_date(line, myMap, valid_value);
+        check_valid_date(line, valid_value);
     }  
-}
-
-BitcoinExchange::BitcoinExchange(std::string file): _file(file){
-    this->_myMap = push_data();
-    _check(this->_file, this->_myMap);
 }
