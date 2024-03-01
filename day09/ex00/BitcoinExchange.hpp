@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:16 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/29 10:31:05 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/01 10:30:18 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,15 @@
 #include<map>
 #include <sstream>
 
-void    _check(std::string file, std::map<size_t, std::string> myMap);
-void    date_format(std::string line, int end);
-int     value_format(std::string value);
-size_t  _convert(const std::string& date);
-std::map<size_t, std::string> push_data(void);
+class BitcoinExchange{
+    private:
+        std::string _file;
+        std::map<size_t, std::string> _myMap;
+    public:
+        BitcoinExchange(std::string file);
+        BitcoinExchange(BitcoinExchange const &copy);
+        BitcoinExchange &operator=(BitcoinExchange const &copy);
+        ~BitcoinExchange();
+};
 
 #endif

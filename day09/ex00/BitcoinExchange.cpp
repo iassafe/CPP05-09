@@ -6,13 +6,29 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:09 by iassafe           #+#    #+#             */
-/*   Updated: 2024/02/29 10:48:18 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/01 10:31:49 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"BitcoinExchange.hpp"
 
-size_t _convert(const std::string& date){
+
+BitcoinExchange::BitcoinExchange(BitcoinExchange const &copy){
+	*this=copy;
+}
+
+BitcoinExchange::~BitcoinExchange(){
+}
+
+BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &copy){
+    if (this != &copy){
+        this->_file = copy._file;
+        this->_myMap = copy._myMap;
+    }
+    return(*this);
+}
+
+static size_t _convert(const std::string& date){
     std::istringstream s(date);
     size_t year;
     size_t month;
@@ -23,7 +39,7 @@ size_t _convert(const std::string& date){
     return result;
 }
 
-std::map<size_t, std::string> push_data(void){
+static std::map<size_t, std::string> push_data(void){
     std::string line;
     std::map<size_t, std::string> myMap;
     std::ifstream inputFile("data.csv");
@@ -41,23 +57,23 @@ std::map<size_t, std::string> push_data(void){
     return(myMap);
 }
 
-int value_format(std::string value){
+static int value_format(std::string value){
     int point = 0;
     for(size_t k=0; k < value.length(); k++){
-            if(value[0] != ' ' || (value[k] != '-' && \
-            value[k] != '+' && value[k] != ' ' \
-            && value[k] != '.' && !isdigit(value[k])))
-                throw("Invalid input.");
-            else if (value[0] == ' ' && value[1] == '\0')
-                throw("Invalid input.");
-            else if ((k != 0 && value[k] == ' ') || (k != 1 && \
-            (value[k] == '+' || value[k] == '-')))
-                throw("Invalid input.");
-            else if (((value[k] == '+' || value[k] == '-') && \
-            !isdigit(value[k + 1])) || point > 1)
-                throw("Invalid input.");
-            else if (value[k] == '.')
-                point++;
+        if(value[0] != ' ' || (value[k] != '-' && \
+        value[k] != '+' && value[k] != ' ' \
+        && value[k] != '.' && !isdigit(value[k])))
+            throw("Invalid input.");
+        else if (value[0] == ' ' && value[1] == '\0')
+            throw("Invalid input.");
+        else if ((k != 0 && value[k] == ' ') || (k != 1 && \
+        (value[k] == '+' || value[k] == '-')))
+            throw("Invalid input.");
+        else if (((value[k] == '+' || value[k] == '-') && \
+        !isdigit(value[k + 1])) || point > 1)
+            throw("Invalid input.");
+        else if (value[k] == '.')
+            point++;
     }
     char *endptr;
     double val = strtod(value.c_str(), &endptr);
@@ -72,7 +88,7 @@ int value_format(std::string value){
     return(1);
 }
 
-void date_format(std::string line, int end){
+static void date_format(std::string line, int end){
     int flag = 0;
     int i = 0;
     while(i < end){
@@ -95,13 +111,13 @@ void date_format(std::string line, int end){
         throw("Invalid input.");
 }
 
-int is_leap_year(int year){
+static int is_leap_year(int year){
     if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
         return 1;
     return 0;
 }
 
-void ft_execute(size_t date, std::string value, \
+static void ft_execute(size_t date, std::string value, \
     std::map<size_t, std::string> myMap, std::string date_str){
     std::map<size_t, std::string>::iterator it = myMap.lower_bound(date);
     if (it->first != date && it != myMap.begin())
@@ -113,8 +129,8 @@ void ft_execute(size_t date, std::string value, \
     << nb_value * it_value << std::endl;
 }
 
-void check_valid_date(std::string line, std::map<size_t, std::string> myMap, \
-                        int valid_value){
+static void check_valid_date(std::string line, \
+            std::map<size_t, std::string> myMap, int valid_value){
     size_t date_pos = line.find('|');
     if (date_pos == std::string::npos)
         date_pos = line.length();
@@ -149,7 +165,7 @@ void check_valid_date(std::string line, std::map<size_t, std::string> myMap, \
     }
 }
 
-void _check(std::string file, std::map<size_t, std::string> myMap){
+static void _check(std::string file, std::map<size_t, std::string> myMap){
     std::string line;
     std::ifstream inputFile(file);
     if (!inputFile)
@@ -175,4 +191,9 @@ void _check(std::string file, std::map<size_t, std::string> myMap){
         int valid_value = value_format(value);
         check_valid_date(line, myMap, valid_value);
     }  
+}
+
+BitcoinExchange::BitcoinExchange(std::string file): _file(file){
+    this->_myMap = push_data();
+    _check(this->_file, this->_myMap);
 }
