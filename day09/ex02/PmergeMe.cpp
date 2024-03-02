@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/02 18:48:17 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/02 18:55:39 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,3 +133,7 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &copy){
 
 PmergeMe::~PmergeMe(){
 }
+
+// void PmergeMe::_insert_first(void){
+    
+// }
