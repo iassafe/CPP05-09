@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/02 13:01:55 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/02 13:10:36 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ PmergeMe::PmergeMe(int ac, char **av){
         _isnumber(str);
         char *endptr;
         long nb=std::strtol(av[i], &endptr, 10);
-        // if (nb > INT_MAX)
-        //     throw("Error!");
+        if (nb > INT_MAX)
+            throw("Error!");
         this->_vect.push_back(nb);
     }
     PmergeMe::init_pairs();
