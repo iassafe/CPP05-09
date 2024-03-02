@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:35 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/02 12:59:31 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/02 15:30:10 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ class PmergeMe{
     private:
         std::vector<int> _vect;
         std::vector<std::pair<int, int> > _pairs;
-        std::vector<int> _first;
-        std::vector<int> _second;
         
     public:
         PmergeMe(int ac, char **av);

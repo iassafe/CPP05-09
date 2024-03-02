@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/02 13:10:36 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/02 15:41:32 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void PmergeMe::init_pairs(void){
             this->_pairs.push_back(std::make_pair(this->_vect[i], this->_vect[i - 1]));
         k++;
     }
+    // if (!is_pair)
+    //     this->_pairs.push_back(std::make_pair(this->_vect[k*2], this->_vect[k*2 - 1]));
 }
 
 PmergeMe::PmergeMe(int ac, char **av){
@@ -85,7 +87,12 @@ PmergeMe::PmergeMe(int ac, char **av){
         this->_vect.push_back(nb);
     }
     PmergeMe::init_pairs();
-    PmergeMe::merge_sort(0, (this->_vect.size() / 2) - 1);
+    size_t size_pairs = 0;
+    if (!(this->_vect.size()%2))
+        size_pairs = this->_vect.size() / 2;
+    else 
+        size_pairs = (this->_vect.size() / 2) + 1;
+    PmergeMe::merge_sort(0, size_pairs - 1);
     std::vector<std::pair<int,int> >::iterator it = this->_pairs.begin();
     while(it < this->_pairs.end()){
         std::cout << it->first << "," << it->second << " ";
