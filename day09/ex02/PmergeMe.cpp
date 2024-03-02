@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/02 16:54:48 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/02 17:21:33 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,19 @@ void PmergeMe::init_pairs(void){
     }
 }
 
+void PmergeMe::init_first_second(void){
+    this->_first.push_back(this->_pairs[0].second);
+    for(size_t i=0; i < this->_pairs.size();++i){
+        this->_first.push_back(this->_pairs[i].first);
+        std::cout << "f; "<< this->_first[i] << std::endl;
+    }
+    std::cout << "f; "<< this->_first[this->_pairs.size()] << std::endl;
+    for(size_t i=0; i < this->_pairs.size();++i){
+        this->_second.push_back(this->_pairs[i].second);
+        std::cout << "s; "<<this->_second[i] << std::endl;
+    }
+}
+
 PmergeMe::PmergeMe(int ac, char **av){
     for(int i=1; i < ac; i++){
         std::string str;
@@ -87,12 +100,13 @@ PmergeMe::PmergeMe(int ac, char **av){
     if(!this->_ispair)
         this->_last_element = this->_vect[this->_vect.size() - 1];
     PmergeMe::merge_sort(0, (this->_vect.size() / 2) - 1);
-    std::vector<std::pair<int,int> >::iterator it = this->_pairs.begin();
-    while(it < this->_pairs.end()){
-        std::cout << it->first << "," << it->second << std::endl;
-        it++;
-    }
-    std::cout << _last_element << std::endl;
+    PmergeMe::init_first_second();
+    // std::vector<std::pair<int,int> >::iterator it = this->_pairs.begin();
+    // while(it < this->_pairs.end()){
+    //     std::cout << it->first << "," << it->second << std::endl;
+    //     it++;
+    // }
+    // std::cout << _last_element << std::endl;
 }
 
 PmergeMe::PmergeMe(PmergeMe const &copy){
