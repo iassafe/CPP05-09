@@ -6,15 +6,11 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/01 20:49:18 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/02 12:23:00 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"PmergeMe.hpp"
-
-// std::vector<int>::iterator it = this->_vect.begin();
-// it+= (i - 1);
-// std::cout << *it << std::endl;
 
 static void _isnumber(std::string str){
     size_t pos = str.find_first_not_of("0123456789");
@@ -25,7 +21,6 @@ static void _isnumber(std::string str){
 void PmergeMe::_merge(int left, int mid, int right){
     int size_vl = mid - left + 1;
     int size_vr = right - mid;
-
     std::vector<int> left_vec(size_vl);
     std::vector<int> right_vec(size_vr);
 
@@ -35,7 +30,6 @@ void PmergeMe::_merge(int left, int mid, int right){
     for(int i=0; i < size_vr; i++){
         right_vec[i] = this->_vect[mid + 1 + i];
     }
-
     int i=0;
     int j=0;
     int k=left;
@@ -45,7 +39,6 @@ void PmergeMe::_merge(int left, int mid, int right){
         else
             this->_vect[k++] = right_vec[j++];
     }
-    
     while(j < size_vr){
         this->_vect[k++] = right_vec[j++];
     }
@@ -60,8 +53,22 @@ void PmergeMe::merge_sort(int left, int right){
         int mid = left + (right - left) / 2;
         PmergeMe::merge_sort(left, mid);
         PmergeMe::merge_sort(mid + 1, right);
-        
         PmergeMe::_merge(left, mid, right);
+    }
+}
+
+void PmergeMe::init_pairs(void){
+    bool is_pair=false;
+    if (!(this->_vect.size()%2))
+        is_pair=true;
+    int k=0;
+    for (size_t i=1; i < this->_vect.size(); i+=2){
+        if (this->_vect[i] > this->_vect[i - 1])
+            this->_pairs.push_back(std::make_pair(this->_vect[i - 1], this->_vect[i]));
+        else
+            this->_pairs.push_back(std::make_pair(this->_vect[i], this->_vect[i - 1]));
+        std::cout << this->_pairs[k].first << " " <<this->_pairs[k].second << std::endl;
+        k++;
     }
 }
 
@@ -76,10 +83,11 @@ PmergeMe::PmergeMe(int ac, char **av){
         long nb=std::strtol(av[i], &endptr, 10);
         this->_vect.push_back(nb);
     }
-    PmergeMe::merge_sort(0, this->_vect.size() - 1);
+    PmergeMe::init_pairs();
+    PmergeMe::merge_sort(0, (this->_vect.size() / 2) - 1);
     std::vector<int>::iterator it = this->_vect.begin();
     while(it < this->_vect.end()){
-        std::cout << *it << std::endl;
+        std::cout << *it << " ";
         it++;
     }
 }
