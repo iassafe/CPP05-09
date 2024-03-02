@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/02 16:38:29 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:54:48 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void PmergeMe::merge_sort(int left, int right){
 
 void PmergeMe::init_pairs(void){
     for (size_t i=1; i < this->_vect.size(); i+=2){
-        if (this->_vect[i] > this->_vect[i - 1])
+        if (this->_vect[i] < this->_vect[i - 1])
             this->_pairs.push_back(std::make_pair(this->_vect[i - 1], this->_vect[i]));
         else
             this->_pairs.push_back(std::make_pair(this->_vect[i], this->_vect[i - 1]));
