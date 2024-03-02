@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:35 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/02 17:01:07 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/02 18:45:36 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class PmergeMe{
         int _last_element;
         std::vector<int> _first;
         std::vector<int> _second;
+        std::vector<int> _jacobsthal;
     public:
         PmergeMe(int ac, char **av);
         PmergeMe(PmergeMe const &copy);
@@ -33,6 +34,8 @@ class PmergeMe{
         void merge_sort(int left, int right);
         void _merge(int left, int mid, int right);
         void init_pairs(void);
+        void check_pair(void);
         void init_first_second(void);
+        void init_jacobsthal(void);
 };
 #endif
