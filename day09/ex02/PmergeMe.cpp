@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/02 15:41:32 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/02 16:38:29 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,12 @@ void PmergeMe::merge_sort(int left, int right){
 }
 
 void PmergeMe::init_pairs(void){
-    bool is_pair=false;
-    if (!(this->_vect.size()%2))
-        is_pair=true;
-    int k=0;
     for (size_t i=1; i < this->_vect.size(); i+=2){
         if (this->_vect[i] > this->_vect[i - 1])
             this->_pairs.push_back(std::make_pair(this->_vect[i - 1], this->_vect[i]));
         else
             this->_pairs.push_back(std::make_pair(this->_vect[i], this->_vect[i - 1]));
-        k++;
     }
-    // if (!is_pair)
-    //     this->_pairs.push_back(std::make_pair(this->_vect[k*2], this->_vect[k*2 - 1]));
 }
 
 PmergeMe::PmergeMe(int ac, char **av){
@@ -87,17 +80,19 @@ PmergeMe::PmergeMe(int ac, char **av){
         this->_vect.push_back(nb);
     }
     PmergeMe::init_pairs();
-    size_t size_pairs = 0;
+    this->_ispair=false;
+    this->_last_element=0;
     if (!(this->_vect.size()%2))
-        size_pairs = this->_vect.size() / 2;
-    else 
-        size_pairs = (this->_vect.size() / 2) + 1;
-    PmergeMe::merge_sort(0, size_pairs - 1);
+        this->_ispair=true;
+    if(!this->_ispair)
+        this->_last_element = this->_vect[this->_vect.size() - 1];
+    PmergeMe::merge_sort(0, (this->_vect.size() / 2) - 1);
     std::vector<std::pair<int,int> >::iterator it = this->_pairs.begin();
     while(it < this->_pairs.end()){
-        std::cout << it->first << "," << it->second << " ";
+        std::cout << it->first << "," << it->second << std::endl;
         it++;
     }
+    std::cout << _last_element << std::endl;
 }
 
 PmergeMe::PmergeMe(PmergeMe const &copy){
