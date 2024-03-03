@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:01 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/02 18:55:35 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/03 18:47:56 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int ac, char **av){
     try{
         if (ac > 1 && av[1][0]){
             PmergeMe pmm(ac, av);
-            // pmm._insert_first();
+            pmm._insert_first();
         }
         else
             throw("Error!");

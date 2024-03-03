@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/03 18:33:57 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/03 20:17:18 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,26 +68,20 @@ void PmergeMe::init_pairs(void){
 
 void PmergeMe::init_first_second(void){
     this->_first.push_back(this->_pairs[0].second);
-    for(size_t i=0; i < this->_pairs.size();++i){
+    for(size_t i=0; i < this->_pairs.size();i++){
         this->_first.push_back(this->_pairs[i].first);
-        std::cout << _first[i] << " ";
     }
-    std::cout << _first[_pairs.size()] << std::endl;
-    for(size_t i=0; i < this->_pairs.size();++i){
+    for(size_t i=0; i < this->_pairs.size();i++){
         this->_second.push_back(this->_pairs[i].second);
-        std::cout << _second[i] << " ";
     }
-    std::cout << std::endl;
 }
 
 void PmergeMe::init_jacobsthal(void){
     this->_jacobsthal.push_back(1);
     this->_jacobsthal.push_back(3);
-    std::cout << _jacobsthal[0] << " " << _jacobsthal[1];
     for(size_t i=2; i < this->_second.size(); i++){
         int k= this->_jacobsthal[i - 1] + 2 * this->_jacobsthal[i - 2];
         this->_jacobsthal.push_back(k);
-        std::cout << " " << _jacobsthal[i];
     }
 }
 
@@ -140,6 +134,38 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &copy){
 PmergeMe::~PmergeMe(){
 }
 
-// void PmergeMe::_insert_first(void){
-    
-// }
+void PmergeMe::_insert_first(void){
+    size_t old_js=0;
+    size_t new_js=0;
+    size_t n=1;
+    while(n < this->_second.size()){
+        size_t k =this->_jacobsthal[n];
+        if (k <= this->_second.size()){
+            old_js = this->_jacobsthal[n - 1];
+            new_js = this->_jacobsthal[n];
+        }
+        else{
+            old_js = this->_jacobsthal[n - 1];
+            new_js = this->_second.size();
+        }
+        // size_t size = new_js + old_js - 1;
+        // this->_first.begin() + size++,
+        while(new_js > old_js){
+            std::vector<int>::iterator it = this->_second.begin() + (new_js - 1);
+            std::vector<int>::iterator pos = std::lower_bound(this->_first.begin(), \
+            this->_first.end(), this->_second[new_js - 1]);
+            this->_first.insert(pos, *it);
+            new_js--;
+        }
+        if (new_js == this->_second.size())
+            break;
+        n++;
+    }
+    if (!this->_ispair){
+        std::vector<int>::iterator pos = std::lower_bound(this->_first.begin(), \
+        this->_first.end(), this->_last_element);
+        this->_first.insert(pos, this->_last_element);
+    }
+    if(!std::is_sorted(_first.begin(), _first.end()))
+        throw("mamsortinch");
+}

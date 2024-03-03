@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:35 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/02 18:55:27 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/03 18:47:51 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ class PmergeMe{
         void init_first_second(void);
         void init_jacobsthal(void);
 
-        // void _insert_first(void);
+        void _insert_first(void);
 };
 #endif
