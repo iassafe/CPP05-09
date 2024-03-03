@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/03 20:22:25 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/03 20:28:16 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,10 @@ void PmergeMe::_insert_first(void){
         this->_first.end(), this->_last_element);
         this->_first.insert(pos, this->_last_element);
     }
+    for(size_t i=0; i < _first.size(); i++){
+        std::cout << _first[i] << ", ";
+    }
+    std::cout << std::endl;
     if(!std::is_sorted(_first.begin(), _first.end()))
         throw("mamsortinch");
 }
