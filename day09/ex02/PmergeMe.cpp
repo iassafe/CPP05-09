@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/02 18:55:39 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/03 18:33:57 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,24 @@ void PmergeMe::init_first_second(void){
     this->_first.push_back(this->_pairs[0].second);
     for(size_t i=0; i < this->_pairs.size();++i){
         this->_first.push_back(this->_pairs[i].first);
+        std::cout << _first[i] << " ";
     }
+    std::cout << _first[_pairs.size()] << std::endl;
     for(size_t i=0; i < this->_pairs.size();++i){
         this->_second.push_back(this->_pairs[i].second);
+        std::cout << _second[i] << " ";
     }
+    std::cout << std::endl;
 }
 
 void PmergeMe::init_jacobsthal(void){
     this->_jacobsthal.push_back(1);
     this->_jacobsthal.push_back(3);
+    std::cout << _jacobsthal[0] << " " << _jacobsthal[1];
     for(size_t i=2; i < this->_second.size(); i++){
-        int k= 2 * this->_jacobsthal[i - 1] + this->_jacobsthal[i - 2];
+        int k= this->_jacobsthal[i - 1] + 2 * this->_jacobsthal[i - 2];
         this->_jacobsthal.push_back(k);
+        std::cout << " " << _jacobsthal[i];
     }
 }
 
