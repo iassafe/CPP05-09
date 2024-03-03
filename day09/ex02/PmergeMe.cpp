@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/03 20:17:18 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/03 20:22:25 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,8 @@ PmergeMe::~PmergeMe(){
 void PmergeMe::_insert_first(void){
     size_t old_js=0;
     size_t new_js=0;
-    size_t n=1;
-    while(n < this->_second.size()){
+    
+    for(size_t n=1;n < this->_second.size(); ++n){
         size_t k =this->_jacobsthal[n];
         if (k <= this->_second.size()){
             old_js = this->_jacobsthal[n - 1];
@@ -159,7 +159,6 @@ void PmergeMe::_insert_first(void){
         }
         if (new_js == this->_second.size())
             break;
-        n++;
     }
     if (!this->_ispair){
         std::vector<int>::iterator pos = std::lower_bound(this->_first.begin(), \
