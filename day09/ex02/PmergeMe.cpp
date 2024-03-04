@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/03 20:28:16 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/04 15:01:05 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,31 @@ void PmergeMe::merge_sort(int left, int right){
 
 void PmergeMe::init_pairs(void){
     for (size_t i=1; i < this->_vect.size(); i+=2){
-        if (this->_vect[i] < this->_vect[i - 1])
-            this->_pairs.push_back(std::make_pair(this->_vect[i - 1], this->_vect[i]));
-        else
+        if (this->_vect[i] > this->_vect[i - 1]){
             this->_pairs.push_back(std::make_pair(this->_vect[i], this->_vect[i - 1]));
+        }
+        else{
+            this->_pairs.push_back(std::make_pair(this->_vect[i - 1], this->_vect[i]));
+        }
     }
 }
 
 void PmergeMe::init_first_second(void){
-    this->_first.push_back(this->_pairs[0].second);
-    for(size_t i=0; i < this->_pairs.size();i++){
+    for(size_t i=0; i < this->_pairs.size();++i){
         this->_first.push_back(this->_pairs[i].first);
     }
-    for(size_t i=0; i < this->_pairs.size();i++){
+    for(size_t i=0; i < this->_pairs.size();++i){
         this->_second.push_back(this->_pairs[i].second);
     }
+    std::vector<int>::iterator pos = std::lower_bound(this->_first.begin(), \
+    this->_first.end(), this->_pairs[0].second);
+    this->_first.insert(pos, this->_pairs[0].second);
 }
 
 void PmergeMe::init_jacobsthal(void){
     this->_jacobsthal.push_back(1);
     this->_jacobsthal.push_back(3);
-    for(size_t i=2; i < this->_second.size(); i++){
+    for(size_t i=2; i < this->_second.size(); ++i){
         int k= this->_jacobsthal[i - 1] + 2 * this->_jacobsthal[i - 2];
         this->_jacobsthal.push_back(k);
     }
@@ -112,12 +116,6 @@ PmergeMe::PmergeMe(int ac, char **av){
     PmergeMe::merge_sort(0, (this->_vect.size() / 2) - 1);
     PmergeMe::init_first_second();
     PmergeMe::init_jacobsthal();
-    // std::vector<std::pair<int,int> >::iterator it = this->_pairs.begin();
-    // while(it < this->_pairs.end()){
-    //     std::cout << it->first << "," << it->second << std::endl;
-    //     it++;
-    // }
-    // std::cout << _last_element << std::endl;
 }
 
 PmergeMe::PmergeMe(PmergeMe const &copy){
@@ -137,24 +135,17 @@ PmergeMe::~PmergeMe(){
 void PmergeMe::_insert_first(void){
     size_t old_js=0;
     size_t new_js=0;
-    
     for(size_t n=1;n < this->_second.size(); ++n){
         size_t k =this->_jacobsthal[n];
-        if (k <= this->_second.size()){
-            old_js = this->_jacobsthal[n - 1];
+        if (k <= this->_second.size())
             new_js = this->_jacobsthal[n];
-        }
-        else{
-            old_js = this->_jacobsthal[n - 1];
+        else
             new_js = this->_second.size();
-        }
-        // size_t size = new_js + old_js - 1;
-        // this->_first.begin() + size++,
+        old_js = this->_jacobsthal[n - 1];
         while(new_js > old_js){
-            std::vector<int>::iterator it = this->_second.begin() + (new_js - 1);
             std::vector<int>::iterator pos = std::lower_bound(this->_first.begin(), \
             this->_first.end(), this->_second[new_js - 1]);
-            this->_first.insert(pos, *it);
+            this->_first.insert(pos, this->_second[new_js - 1]);
             new_js--;
         }
         if (new_js == this->_second.size())
@@ -165,10 +156,6 @@ void PmergeMe::_insert_first(void){
         this->_first.end(), this->_last_element);
         this->_first.insert(pos, this->_last_element);
     }
-    for(size_t i=0; i < _first.size(); i++){
-        std::cout << _first[i] << ", ";
-    }
-    std::cout << std::endl;
     if(!std::is_sorted(_first.begin(), _first.end()))
         throw("mamsortinch");
 }
