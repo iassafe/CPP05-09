@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/04 15:01:05 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/04 17:54:48 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void PmergeMe::_merge(int left, int mid, int right){
     std::vector<int> left_vec(size_vl);
     std::vector<int> right_vec(size_vr);
 
-    for(int i=0; i < size_vl; i++){
+    for(int i=0; i < size_vl; ++i){
         left_vec[i] = this->_pairs[left + i].first;
     }
-    for(int i=0; i < size_vr; i++){
+    for(int i=0; i < size_vr; ++i){
         right_vec[i] = this->_pairs[mid + 1 + i].first;
     }
     int i=0;
@@ -98,8 +98,8 @@ void PmergeMe::check_pair(void){
         this->_last_element = this->_vect[this->_vect.size() - 1];
 }
 
-PmergeMe::PmergeMe(int ac, char **av){
-    for(int i=1; i < ac; i++){
+void PmergeMe::init_vect(int ac, char **av){
+    for(int i=1; i < ac; ++i){
         std::string str;
         if(!av[i][0])
             throw("Error!");
@@ -111,25 +111,6 @@ PmergeMe::PmergeMe(int ac, char **av){
             throw("Error!");
         this->_vect.push_back(nb);
     }
-    PmergeMe::init_pairs();
-    PmergeMe::check_pair();
-    PmergeMe::merge_sort(0, (this->_vect.size() / 2) - 1);
-    PmergeMe::init_first_second();
-    PmergeMe::init_jacobsthal();
-}
-
-PmergeMe::PmergeMe(PmergeMe const &copy){
-    *this=copy;
-}
-
-PmergeMe &PmergeMe::operator=(PmergeMe const &copy){
-    if(this!=&copy){
-        this->_vect=copy._vect;
-    }
-    return(*this);
-}
-
-PmergeMe::~PmergeMe(){
 }
 
 void PmergeMe::_insert_first(void){
@@ -158,4 +139,27 @@ void PmergeMe::_insert_first(void){
     }
     if(!std::is_sorted(_first.begin(), _first.end()))
         throw("mamsortinch");
+}
+
+
+size_t PmergeMe::getSize_Vect() const{
+    return(this->_vect.size());
+}
+
+PmergeMe::PmergeMe(): _vect(0), _pairs(0), _ispair(0), \
+    _last_element(0), _first(0), _second(0), _jacobsthal(0){
+}
+
+PmergeMe::PmergeMe(PmergeMe const &copy){
+    *this=copy;
+}
+
+PmergeMe &PmergeMe::operator=(PmergeMe const &copy){
+    if(this!=&copy){
+        this->_vect=copy._vect;
+    }
+    return(*this);
+}
+
+PmergeMe::~PmergeMe(){
 }
