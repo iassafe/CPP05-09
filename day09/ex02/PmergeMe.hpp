@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:35 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/04 17:54:09 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/05 11:33:19 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 class PmergeMe{
     private:
-        std::vector<int> _vect;
-        std::vector<std::pair<int, int> > _pairs;
-        bool _ispair;
-        int _last_element;
-        std::vector<int> _first;
-        std::vector<int> _second;
-        std::vector<int> _jacobsthal;
+        std::vector<int> _Vect;
+        std::vector<std::pair<int, int> > _Vpairs;
+        bool _Vispair;
+        int _Vlast_element;
+        std::vector<int> _Vfirst;
+        std::vector<int> _Vsecond;
+        std::vector<int> _Vjacobsthal;
     public:
         PmergeMe();
         PmergeMe(PmergeMe const &copy);
@@ -32,7 +32,7 @@ class PmergeMe{
         ~PmergeMe();
         
         size_t getSize_Vect() const;
-        void init_vect(int ac, char **av);
+        int init_vect(int ac, char **av);
         void merge_sort(int left, int right);
         void _merge(int left, int mid, int right);
         void init_pairs(void);
@@ -40,5 +40,6 @@ class PmergeMe{
         void init_first_second(void);
         void init_jacobsthal(void);
         void _insert_first(void);
+        void _print(double duration, int ac,int is_sorted);
 };
 #endif
