@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:35 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/05 11:33:19 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/05 12:21:32 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ class PmergeMe{
         ~PmergeMe();
         
         size_t getSize_Vect() const;
-        int init_vect(int ac, char **av);
-        void merge_sort(int left, int right);
-        void _merge(int left, int mid, int right);
-        void init_pairs(void);
-        void check_pair(void);
-        void init_first_second(void);
-        void init_jacobsthal(void);
-        void _insert_first(void);
-        void _print(double duration, int ac,int is_sorted);
+        int init_Vect(int ac, char **av);
+        void Vmerge_sort(int left, int right);
+        void _Vmerge(int left, int mid, int right);
+        void init_Vpairs(void);
+        void check_Vpair(void);
+        void init_Vfirst_Vsecond(void);
+        void init_Vjacobsthal(void);
+        void _insert_Vfirst(void);
+        void _printV(double duration, int ac,int is_sorted);
 };
 #endif

@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/05 12:14:41 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/05 12:23:17 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void _isnumber(std::string str){
         throw("Error!");
 }
 
-void PmergeMe::_merge(int left, int mid, int right){
+void PmergeMe::_Vmerge(int left, int mid, int right){
     int size_vl = mid - left + 1;
     int size_vr = right - mid;
     std::vector<std::pair<int, int> > left_vec(size_vl);
@@ -49,16 +49,16 @@ void PmergeMe::_merge(int left, int mid, int right){
     }
 }
 
-void PmergeMe::merge_sort(int left, int right){
+void PmergeMe::Vmerge_sort(int left, int right){
     if (left < right){
         int mid = left + (right - left) / 2;
-        PmergeMe::merge_sort(left, mid);
-        PmergeMe::merge_sort(mid + 1, right);
-        PmergeMe::_merge(left, mid, right);
+        PmergeMe::Vmerge_sort(left, mid);
+        PmergeMe::Vmerge_sort(mid + 1, right);
+        PmergeMe::_Vmerge(left, mid, right);
     }
 }
 
-void PmergeMe::init_pairs(void){
+void PmergeMe::init_Vpairs(void){
     for (size_t i=1; i < this->_Vect.size(); i+=2){
         if (this->_Vect[i] > this->_Vect[i - 1]){
             this->_Vpairs.push_back(std::make_pair(this->_Vect[i], this->_Vect[i - 1]));
@@ -69,7 +69,7 @@ void PmergeMe::init_pairs(void){
     }
 }
 
-void PmergeMe::init_first_second(void){
+void PmergeMe::init_Vfirst_Vsecond(void){
     this->_Vfirst.push_back(this->_Vpairs[0].second);
     for(size_t i=0; i < this->_Vpairs.size();++i){
         this->_Vfirst.push_back(this->_Vpairs[i].first);
@@ -79,7 +79,7 @@ void PmergeMe::init_first_second(void){
     }
 }
 
-void PmergeMe::init_jacobsthal(void){
+void PmergeMe::init_Vjacobsthal(void){
     this->_Vjacobsthal.push_back(1);
     this->_Vjacobsthal.push_back(3);
     for(size_t i=2; i < this->_Vsecond.size(); ++i){
@@ -88,7 +88,7 @@ void PmergeMe::init_jacobsthal(void){
     }
 }
 
-void PmergeMe::check_pair(void){
+void PmergeMe::check_Vpair(void){
     this->_Vispair=false;
     this->_Vlast_element=0;
     if (!(this->_Vect.size()%2))
@@ -97,7 +97,7 @@ void PmergeMe::check_pair(void){
         this->_Vlast_element = this->_Vect[this->_Vect.size() - 1];
 }
 
-int PmergeMe::init_vect(int ac, char **av){
+int PmergeMe::init_Vect(int ac, char **av){
     for(int i=1; i < ac; ++i){
         std::string str;
         if(!av[i][0])
@@ -116,7 +116,7 @@ int PmergeMe::init_vect(int ac, char **av){
         return(0);
 }
 
-void PmergeMe::_insert_first(void){
+void PmergeMe::_insert_Vfirst(void){
     size_t old_js=0;
     size_t new_js=0;
     for(size_t n=1;n < this->_Vsecond.size(); ++n){
@@ -143,7 +143,7 @@ void PmergeMe::_insert_first(void){
     }
 }
 
-void PmergeMe::_print(double duration, int ac, int is_sorted){
+void PmergeMe::_printV(double duration, int ac, int is_sorted){
     std::cout << "Before: ";
     for(size_t i=0; i < this->_Vect.size(); ++i){
         std::cout << this->_Vect[i] << " ";
