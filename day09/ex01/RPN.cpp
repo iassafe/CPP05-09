@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 10:05:22 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/01 17:38:58 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/05 19:23:44 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,26 @@ RPN &RPN::operator=(RPN const &copy){
     return(*this);
 }
 
+static int _isvalid(std::string str){
+    size_t pos = str.find_first_not_of("0123456789/*-+ ");
+     if (pos != std::string::npos)
+        return(0);
+    return(1);
+}
+
+static int _isoper(char c){
+    if(c == '+' || c == '-' || c == '*' || c == '/')
+        return(1);
+    return(0);
+}
+
 void RPN::_valid_rpn(){
-    std::istringstream iss(this->_str);
-    std::string token;
     int count_nb = 0;
     int count_op = 0;
-    while (iss >> token){
-        if (isdigit(token[0]))
+    for(size_t i = 0; i < this->_str.length(); i++){
+        if (isdigit(this->_str[i]))
             count_nb++;
-        else if(token == "+" || token == "-" || token == "/" || token == "*")
+        else if (_isoper(this->_str[i]))
             count_op++;
     }
     if (count_nb != (count_op + 1))
@@ -46,64 +57,61 @@ void RPN::_valid_rpn(){
 }
 
 void RPN::_rpn(){
-    std::istringstream iss(this->_str);
-    std::string token;
     char *endptr;
     std::stack<int> stack;
-    while (iss >> token){
-        if (isdigit(token[0])){
-            double number = std::strtod(token.c_str(), &endptr);
+    int i = 0;
+    while (this->_str[i]){
+        if (isdigit(this->_str[i])){
+            double number = std::strtod(this->_str.c_str(), &endptr);
             stack.push(number);
         }
-        else if (stack.size() > 1){
+        else if (stack.size() > 1 && _isoper(this->_str[i])){
             double nb1 = stack.top();
             stack.pop();
             double nb2 = stack.top();
             stack.pop();
-            if (token == "+")
+            if (this->_str[i] == '+')
                 stack.push(nb2 + nb1);
-            else if(token == "-")
+            else if(this->_str[i] == '-')
                 stack.push(nb2 - nb1);
-            else if(token == "*")
+            else if(this->_str[i] == '*')
                 stack.push(nb2 * nb1);
-            else if(token == "/")
+            else if(this->_str[i] == '/')
                 stack.push(nb2 / nb1);
         }
-        else
-            throw("Invalid input!");
+        i++;
     }
     if (stack.size() == 1)
         std::cout << stack.top() << std::endl;
+    else
+        throw("Invalid input!");
 }
 
+
 void RPN::_check(){
+    if (!_isvalid(this->_str) || this->_str.length() <= 2)
+        throw("Invalid input!");
     for(size_t i = 0; i < this->_str.length(); i++){
-        if (this->_str.length() > 2 ){
-            if (!isdigit(this->_str[0]))
-                throw("Invalid input!");
-            else{
-                int k = 1;
-                while(this->_str[k] == ' '){
-                    k++;
-                }
-                if(!isdigit(this->_str[k]))
-                    throw("Invalid input!");
+        if (!isdigit(this->_str[0]))
+            throw("Invalid input9!");
+        else{
+            int k = 1;
+            while(this->_str[k] == ' '){
+                k++;
             }
+            if(!isdigit(this->_str[k]))
+                throw("Invalid input8!");
         }
-        if (!isdigit(this->_str[i]) && this->_str[i] != ' ' && \
-            this->_str[i] != '+' && this->_str[i] != '-' && \
-            this->_str[i] != '/' && this->_str[i] != '*')
-            throw("Invalid input!");
-        else if ((this->_str[i] == '-' || this->_str[i] == '+') && \
-            (this->_str[i + 1] != ' ' && this->_str[i + 1]))
-            throw("Invalid input!");
-        else if (isdigit(this->_str[i]) && (this->_str[i + 1] != ' ' \
-            || ( i > 0 && this->_str[i - 1] != ' ')))
-            throw("Invalid input!");
-        else if (((this->_str[i] == '/' || this->_str[i] == '*') \
-            && (this->_str[i + 1] != ' ' && this->_str[i + 1]))
-            || ((this->_str[i] == '/' || this->_str[i] == '*') \
-            && this->_str[i - 1] != ' '))
-            throw("Invalid input!");
+        // if ((this->_str[i] == '-' || this->_str[i] == '+') && \
+        //     (this->_str[i + 1] != ' ' && this->_str[i + 1]))
+        //     throw("Invalid input!");
+        if (isdigit(this->_str[i]) && ((!_isoper(this->_str[i + 1]) && this->_str[i + 1] != ' ')
+            || ( i > 0 && !_isoper(this->_str[i - 1]) && this->_str[i - 1] && this->_str[i - 1] != ' ')))
+            throw("Invalid input7!");
+        // else if (((this->_str[i] == '/' || this->_str[i] == '*') \
+        //     && (this->_str[i + 1] != ' ' && this->_str[i + 1]))
+        //     || ((this->_str[i] == '/' || this->_str[i] == '*') \
+        //     && this->_str[i - 1] != ' '))
+        //     throw("Invalid input!");
     }
 }
