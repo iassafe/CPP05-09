@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:30:32 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/05 11:33:55 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/05 12:14:41 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,31 @@ static void _isnumber(std::string str){
 void PmergeMe::_merge(int left, int mid, int right){
     int size_vl = mid - left + 1;
     int size_vr = right - mid;
-    std::vector<int> left_vec(size_vl);
-    std::vector<int> right_vec(size_vr);
+    std::vector<std::pair<int, int> > left_vec(size_vl);
+    std::vector<std::pair<int, int> > right_vec(size_vr);
 
-    for(int i=0; i < size_vl; ++i){
-        left_vec[i] = this->_Vpairs[left + i].first;
+    for (int i = 0; i < size_vl; ++i){
+        left_vec[i] = this->_Vpairs[left + i];
     }
-    for(int i=0; i < size_vr; ++i){
-        right_vec[i] = this->_Vpairs[mid + 1 + i].first;
+    for (int i = 0; i < size_vr; ++i){
+        right_vec[i] = this->_Vpairs[mid + 1 + i];
     }
-    int i=0;
-    int j=0;
-    int k=left;
-    while(i < size_vl && j < size_vr){
-        if(left_vec[i] <= right_vec[j])
-            this->_Vpairs[k++].first = left_vec[i++];
+    int i = 0;
+    int j = 0;
+    int k = left;
+    while (i < size_vl && j < size_vr){
+        if (left_vec[i].first <= right_vec[j].first)
+            this->_Vpairs[k++] = left_vec[i++];
         else
-            this->_Vpairs[k++].first = right_vec[j++];
+            this->_Vpairs[k++] = right_vec[j++];
     }
-    while(j < size_vr){
-        this->_Vpairs[k++].first = right_vec[j++];
+    
+    while (j < size_vr){
+        this->_Vpairs[k++] = right_vec[j++];
     }
-    while(i < size_vl){
-        this->_Vpairs[k++].first = left_vec[i++];
+    
+    while (i < size_vl){
+        this->_Vpairs[k++] = left_vec[i++];
     }
 }
 
@@ -68,15 +70,13 @@ void PmergeMe::init_pairs(void){
 }
 
 void PmergeMe::init_first_second(void){
+    this->_Vfirst.push_back(this->_Vpairs[0].second);
     for(size_t i=0; i < this->_Vpairs.size();++i){
         this->_Vfirst.push_back(this->_Vpairs[i].first);
     }
     for(size_t i=0; i < this->_Vpairs.size();++i){
         this->_Vsecond.push_back(this->_Vpairs[i].second);
     }
-    std::vector<int>::iterator pos = std::lower_bound(this->_Vfirst.begin(), \
-    this->_Vfirst.end(), this->_Vpairs[0].second);
-    this->_Vfirst.insert(pos, this->_Vpairs[0].second);
 }
 
 void PmergeMe::init_jacobsthal(void){
@@ -126,9 +126,10 @@ void PmergeMe::_insert_first(void){
         else
             new_js = this->_Vsecond.size();
         old_js = this->_Vjacobsthal[n - 1];
+        size_t size_insert = new_js + old_js - 1;
         while(new_js > old_js){
             std::vector<int>::iterator pos = std::lower_bound(this->_Vfirst.begin(), \
-            this->_Vfirst.end(), this->_Vsecond[new_js - 1]);
+            this->_Vfirst.begin() + size_insert, this->_Vsecond[new_js - 1]);
             this->_Vfirst.insert(pos, this->_Vsecond[new_js - 1]);
             new_js--;
         }
@@ -161,7 +162,8 @@ void PmergeMe::_print(double duration, int ac, int is_sorted){
         }
     }
     std::cout << std::endl;
-    std::cout << "Time to process a range of "<< ac - 1<<" elements with std::vector: " << duration << " us" << std::endl;
+    std::cout << "Time to process a range of "<< ac - 1
+    <<" elements with std::vector: " << duration << " us" << std::endl;
 }
 
 size_t PmergeMe::getSize_Vect() const{
