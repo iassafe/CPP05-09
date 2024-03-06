@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 10:05:22 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/06 11:10:06 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/06 11:26:05 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void RPN::_check(){
         }
         if (isdigit(this->_str[i]) && ((!_isoper(this->_str[i + 1]) && \
             this->_str[i + 1] != ' ') || ( i > 0 && !_isoper(this->_str[i - 1]) \
-            && this->_str[i - 1] && this->_str[i - 1] != ' ')))
+            && this->_str[i - 1] != ' ')))
             throw("Invalid input!");
     }
 }
