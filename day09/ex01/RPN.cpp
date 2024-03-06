@@ -6,7 +6,7 @@
 /*   By: iassafe <iassafe@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 10:05:22 by iassafe           #+#    #+#             */
-/*   Updated: 2024/03/05 19:23:44 by iassafe          ###   ########.fr       */
+/*   Updated: 2024/03/06 11:10:06 by iassafe          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,14 @@ void RPN::_valid_rpn(){
 }
 
 void RPN::_rpn(){
-    char *endptr;
     std::stack<int> stack;
     int i = 0;
     while (this->_str[i]){
         if (isdigit(this->_str[i])){
-            double number = std::strtod(this->_str.c_str(), &endptr);
+            int number = static_cast<int>(this->_str[i]) - '0';
             stack.push(number);
         }
-        else if (stack.size() > 1 && _isoper(this->_str[i])){
+        else if (stack.size() > 1 && this->_str[i] != ' '){
             double nb1 = stack.top();
             stack.pop();
             double nb2 = stack.top();
@@ -83,35 +82,32 @@ void RPN::_rpn(){
     }
     if (stack.size() == 1)
         std::cout << stack.top() << std::endl;
-    else
-        throw("Invalid input!");
 }
 
 
 void RPN::_check(){
-    if (!_isvalid(this->_str) || this->_str.length() <= 2)
+    if (!_isvalid(this->_str) || this->_str.length() <= 3)
         throw("Invalid input!");
     for(size_t i = 0; i < this->_str.length(); i++){
-        if (!isdigit(this->_str[0]))
-            throw("Invalid input9!");
+        if (!isdigit(this->_str[0]) && this->_str[0] != ' ')
+            throw("Invalid input!");
         else{
-            int k = 1;
+            int k = 0;
             while(this->_str[k] == ' '){
                 k++;
             }
             if(!isdigit(this->_str[k]))
-                throw("Invalid input8!");
+                throw("Invalid input!");
+            k++;
+            while(this->_str[k] == ' '){
+                k++;
+            }
+            if(!isdigit(this->_str[k]))
+                throw("Invalid input!");
         }
-        // if ((this->_str[i] == '-' || this->_str[i] == '+') && \
-        //     (this->_str[i + 1] != ' ' && this->_str[i + 1]))
-        //     throw("Invalid input!");
-        if (isdigit(this->_str[i]) && ((!_isoper(this->_str[i + 1]) && this->_str[i + 1] != ' ')
-            || ( i > 0 && !_isoper(this->_str[i - 1]) && this->_str[i - 1] && this->_str[i - 1] != ' ')))
-            throw("Invalid input7!");
-        // else if (((this->_str[i] == '/' || this->_str[i] == '*') \
-        //     && (this->_str[i + 1] != ' ' && this->_str[i + 1]))
-        //     || ((this->_str[i] == '/' || this->_str[i] == '*') \
-        //     && this->_str[i - 1] != ' '))
-        //     throw("Invalid input!");
+        if (isdigit(this->_str[i]) && ((!_isoper(this->_str[i + 1]) && \
+            this->_str[i + 1] != ' ') || ( i > 0 && !_isoper(this->_str[i - 1]) \
+            && this->_str[i - 1] && this->_str[i - 1] != ' ')))
+            throw("Invalid input!");
     }
 }
